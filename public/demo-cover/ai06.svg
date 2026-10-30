@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Sample graphic for RISK MODELING">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c2d12"/><stop offset="1" stop-color="#f59e0b"/></linearGradient><pattern id="grid" width="35" height="35" patternUnits="userSpaceOnUse"><path d="M35 0H0V35" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="1"/></pattern></defs>
+<rect width="800" height="450" rx="24" fill="url(#g)"/><rect width="800" height="450" fill="url(#grid)"/>
+<circle cx="662" cy="94" r="155" stroke="#fff" stroke-opacity=".16" stroke-width="2" fill="none"/><circle cx="662" cy="94" r="111" fill="#fff" fill-opacity=".07"/>
+<path d="M65 314 L183 265 L275 296 L364 195 L459 236 L571 130 L687 177" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M65 364 L184 315 L275 346 L364 245 L459 286 L571 180 L687 227" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="5"/>
+<rect x="50" y="50" width="150" height="34" rx="17" fill="#fff" fill-opacity=".20"/>
+<text x="125" y="72" fill="#fff" font-size="13" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2" text-anchor="middle">SAMPLE / DEMO</text>
+<text x="50" y="404" fill="#fff" font-size="39" font-family="Arial,sans-serif" font-weight="800" letter-spacing="1">RISK MODELING</text>
+</svg>
