@@ -1,38 +1,87 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ArrowUp, Check, Compass, Globe, Home, Notebook, X } from "lucide-react";
+import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useLocale } from "@/components/locale-provider";
-import { site } from "@/lib/site";
-import { Home, Notebook, Compass, ChevronRight, Github, Linkedin, Twitter, Instagram, Youtube, Globe, Mail, ExternalLink, type LucideIcon } from "lucide-react";
+import { useSite } from "@/components/site-provider";
+import { socialIcons } from "@/components/social-icons";
+import { useActiveSection, useGoToSection, useNavSections } from "@/components/section-nav";
+import { shown } from "@/lib/site-utils";
 
-const icons: Record<string, LucideIcon> = { github: Github, linkedin: Linkedin, twitter: Twitter, instagram: Instagram, youtube: Youtube, globe: Globe, mail: Mail, external: ExternalLink };
+/** Dock bawah ala Magic UI: beranda, menu section, blog, sosial, dan tema. Bahasa ada di header atas. */
 export default function Navbar() {
-  const { language, setLanguage } = useLocale();
-  const [menuOpen, setMenuOpen] = useState(false);
-  useEffect(() => { if (!menuOpen) return; const close = (event: KeyboardEvent) => { if (event.key === "Escape") setMenuOpen(false); }; document.addEventListener("keydown", close); return () => document.removeEventListener("keydown", close); }, [menuOpen]);
-  const entries = [
-    { href: "/", label: language === "id" ? "Beranda" : "Home", icon: Home },
-    ...(site.sections.find(s => s.id === "blog")?.visible ? [{ href: "/blog", label: "Blog", icon: Notebook }] : []),
-    ...site.socialLinks.filter(s => s.dock && s.href).map(s => ({ href: s.href, label: s.label, icon: icons[s.icon] || Globe })),
-  ];
-  const left = site.settings.languagePosition === "top-left";
+  const { data } = useSite();
+  const { t } = useLocale();
+  const pathname = usePathname();
+  const sections = useNavSections();
+  const active = useActiveSection(pathname === "/" ? sections.map((s) => s.id) : []);
+  const go = useGoToSection();
+  const [open, setOpen] = useState(false);
+  const [showTop, setShowTop] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 640);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    menuRef.current?.querySelector<HTMLElement>("a[aria-current], a")?.focus();
+    const onDown = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node) && !triggerRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, [open]);
+
+  const close = (refocus = true) => { setOpen(false); if (refocus) triggerRef.current?.focus(); };
+  const onMenuKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    const links = Array.from(menuRef.current?.querySelectorAll<HTMLElement>("a,button") ?? []);
+    const i = links.indexOf(document.activeElement as HTMLElement);
+    if (e.key === "Escape") { e.preventDefault(); close(); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); links[(i + 1) % links.length]?.focus(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); links[(i - 1 + links.length) % links.length]?.focus(); }
+    else if (e.key === "Home") { e.preventDefault(); links[0]?.focus(); }
+    else if (e.key === "End") { e.preventDefault(); links.at(-1)?.focus(); }
+  };
+
+  if (pathname.startsWith("/admin")) return null;
+  const blogVisible = data.sections.find((s) => s.id === "blog")?.visible;
+  const socials = shown(data, "socialLinks").filter((s) => s.dock && s.href);
+  const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.animation === "off";
+
   return <>
-    <div className={`pointer-events-none fixed z-50 top-4 ${left ? "left-4" : "right-4"}`}>
-      <div className="pointer-events-auto inline-flex gap-1.5 p-1.5 rounded-full border bg-card/95 shadow-lg backdrop-blur-xl" role="group" aria-label={language === "id" ? "Pilih bahasa" : "Select language"}>
-        {(["id", "en"] as const).map(lang => <button key={lang} className="nav-control text-xs font-bold" type="button" onClick={() => setLanguage(lang)} aria-label={lang === "id" ? "Bahasa Indonesia" : "English"} aria-pressed={language === lang}>{lang.toUpperCase()}</button>)}
+    {open && <div ref={menuRef} id="portfolio-quick-menu" className="quick-menu" role="dialog" aria-label={t("jumpTo")} onKeyDown={onMenuKey}>
+      <div className="flex items-center justify-between px-3 pb-2">
+        <p className="text-xs font-bold tracking-wide text-muted-foreground uppercase">{t("jumpTo")}</p>
+        <button type="button" className="ui-icon-button size-8! min-w-8!" onClick={() => close()} aria-label={t("closeMenu")}><X className="size-4" aria-hidden /></button>
       </div>
-    </div>
-    {menuOpen && <nav id="portfolio-quick-menu" aria-label={language === "id" ? "Navigasi bagian halaman" : "Page sections"} className="quick-menu">
-      <p className="px-3 pb-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">{language === "id" ? "Langsung ke bagian" : "Jump to section"}</p>
-      {site.sections.filter(s => s.visible && (s.id === "hero" || s.id === "about" || s.id === "contact" || ({ projects: site.projects, work: site.work, education: site.education, skills: site.skills, certifications: site.certifications, activities: site.activities, blog: site.posts.filter(p => p.status === "published") }[s.id as "projects"]?.length ?? 0) > 0)).map(s => <a key={s.id} href={`/#${s.id}`} onClick={(event) => { setMenuOpen(false); if (window.location.pathname === "/") { const node = document.getElementById(s.id); if (node) { event.preventDefault(); node.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }); window.history.replaceState(null, "", `/#${s.id}`); } } }}><span>{language === "en" && s.en?.title ? s.en.title : s.title || s.id}</span><ChevronRight className="size-4 text-muted-foreground" /></a>)}
-    </nav>}
-    <nav aria-label={language === "id" ? "Navigasi utama" : "Main navigation"} className="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-3">
-      <div className="pointer-events-auto flex w-fit max-w-full items-center gap-1.5 overflow-x-auto rounded-full border bg-card/95 p-2 shadow-xl backdrop-blur-2xl">
-        {entries.map(({ href, label, icon: Icon }, i) => <a key={`${href}-${i}`} href={href} aria-label={label} title={label} className="nav-control" target={/^https?:\/\//.test(href) ? "_blank" : undefined} rel={/^https?:\/\//.test(href) ? "noopener noreferrer" : undefined}><Icon className="size-5" aria-hidden="true"/></a>)}
-        <button type="button" className="nav-control" aria-expanded={menuOpen} aria-controls="portfolio-quick-menu" aria-label={language === "id" ? "Jelajahi bagian halaman" : "Jump to a section"} title={language === "id" ? "Jelajahi" : "Explore"} onClick={() => setMenuOpen(v => !v)}><Compass className="size-5"/></button>
-        <span className="mx-1 h-6 w-px shrink-0 bg-border" aria-hidden="true" />
-        <ModeToggle className="nav-control" />
-      </div>
+      <nav aria-label={t("sectionNav")}>
+        <Link href="/#hero" onClick={(e) => { go("hero", e); close(false); }} aria-current={pathname === "/" && active === "hero" ? "location" : undefined}><span>{t("home")}</span>{active === "hero" && pathname === "/" && <Check className="size-4" aria-hidden />}</Link>
+        {sections.map((s) => <a key={s.id} href={`/#${s.id}`} onClick={(e) => { go(s.id, e); close(false); }} aria-current={pathname === "/" && active === s.id ? "location" : undefined}><span>{s.label}</span>{pathname === "/" && active === s.id && <Check className="size-4" aria-hidden />}</a>)}
+      </nav>
+    </div>}
+
+    {showTop && <button type="button" className="back-to-top" onClick={() => { window.scrollTo({ top: 0, behavior: reduced() ? "auto" : "smooth" }); if (pathname === "/") window.history.replaceState(null, "", window.location.pathname); }} aria-label={t("backToTop")} title={t("backToTop")}><ArrowUp className="size-5" aria-hidden /></button>}
+
+    <nav aria-label={t("mainNav")} className="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-3">
+      <Dock className="dock-bar pointer-events-auto" magnification={52} distance={110}>
+        <DockIcon><Link href="/" onClick={(e) => go("hero", e)} aria-label={t("home")} title={t("home")} className="dock-link"><Home className="size-full" aria-hidden /></Link></DockIcon>
+        <DockIcon><button ref={triggerRef} type="button" className="dock-link" aria-expanded={open} aria-controls="portfolio-quick-menu" aria-haspopup="dialog" aria-label={t("explore")} title={t("explore")} onClick={() => setOpen((v) => !v)}><Compass className="size-full" aria-hidden /></button></DockIcon>
+        {blogVisible && <DockIcon><Link href="/blog" aria-label={t("blog")} title={t("blog")} className="dock-link" aria-current={pathname.startsWith("/blog") ? "page" : undefined}><Notebook className="size-full" aria-hidden /></Link></DockIcon>}
+        {socials.length > 0 && <span className="dock-sep" aria-hidden />}
+        {socials.map((s) => { const Icon = socialIcons[s.icon] ?? Globe; return <DockIcon key={s.id}><a href={s.href} aria-label={s.label} title={s.label} className="dock-link" target={/^https?:\/\//.test(s.href) ? "_blank" : undefined} rel="noopener noreferrer"><Icon className="size-full" aria-hidden /></a></DockIcon>; })}
+        <span className="dock-sep" aria-hidden />
+        <DockIcon><ModeToggle className="dock-link" /></DockIcon>
+      </Dock>
     </nav>
   </>;
 }

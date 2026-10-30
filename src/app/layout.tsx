@@ -1,28 +1,63 @@
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/navbar";
+import SiteHeader from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LocaleProvider } from "@/components/locale-provider";
+import { SiteProvider } from "@/components/site-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { BackgroundGrid } from "@/components/background-grid";
 import { site } from "@/lib/site";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { siteUrl } from "@/lib/seo";
+import { shellWidthClass, themeStyle } from "@/lib/theme";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans", weight: ["400","500","600","700"] });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500", "600"] });
-const url = site.profile.siteUrl.startsWith("http") ? site.profile.siteUrl : "http://localhost:3000";
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "500", "600", "700"], display: "swap" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500", "600"], display: "swap" });
+
+const s = site.settings;
+const title = s.seoTitle || site.profile.name;
+const description = s.seoDescription || site.profile.description;
+const favicon = s.faviconUrl || "/brand-default.svg";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(url),
-  title: { default: site.profile.name, template: `%s | ${site.profile.name}` },
-  description: site.profile.description,
-  openGraph: { title: site.profile.name, description: site.profile.description, url, siteName: site.profile.name, type: "website" },
-  twitter: { card: "summary_large_image", title: site.profile.name, description: site.profile.description },
+  metadataBase: new URL(siteUrl()),
+  title: { default: title, template: `%s | ${site.profile.name}` },
+  description,
+  keywords: s.seoKeywords.length ? s.seoKeywords : undefined,
+  authors: [{ name: site.profile.name }],
+  alternates: { canonical: "/" },
+  openGraph: { title, description, url: "/", siteName: site.profile.name, type: "website", locale: "id_ID", alternateLocale: ["en_US"], ...(s.ogImageUrl ? { images: [s.ogImageUrl] } : {}) },
+  twitter: { card: "summary_large_image", title, description, ...(s.ogImageUrl ? { images: [s.ogImageUrl] } : {}) },
   robots: { index: true, follow: true },
-  icons: { icon: site.settings.faviconUrl || "/brand-default.svg", shortcut: site.settings.faviconUrl || "/brand-default.svg" },
+  icons: { icon: favicon, shortcut: favicon, apple: favicon },
 };
-const rgb = site.settings.accentColor.slice(1);
-const shellWidth = ({ medium: "max-w-5xl", wide: "max-w-7xl", full: "max-w-[1600px]" } as const)[site.settings.contentWidth] || "max-w-7xl";
-const lightness = [0,2,4].map(i => parseInt(rgb.slice(i,i+2),16)).reduce((sum,v,i) => sum + v * [0.299,0.587,0.114][i],0);
+export const viewport: Viewport = {
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#ffffff" }, { media: "(prefers-color-scheme: dark)", color: "#1c1c1c" }],
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org", "@type": "Person", name: site.profile.name, jobTitle: site.profile.headline, description: site.profile.description,
+  url: siteUrl(), ...(site.profile.email ? { email: `mailto:${site.profile.email}` } : {}),
+  sameAs: site.socialLinks.filter((l) => !l.hidden && /^https?:/.test(l.href)).map((l) => l.href),
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="id" suppressHydrationWarning><body className={`${geist.variable} ${mono.variable} min-h-screen bg-background font-sans antialiased relative`} style={{ "--primary": site.settings.accentColor, "--primary-foreground": lightness > 160 ? "#101827" : "#ffffff" } as React.CSSProperties}><ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}><LocaleProvider><TooltipProvider delayDuration={0}><div className="absolute inset-x-0 top-0 h-[100px] overflow-hidden z-0"><FlickeringGrid className="h-full w-full" squareSize={2} gridGap={2} style={{ maskImage: "linear-gradient(to bottom,black,transparent)", WebkitMaskImage: "linear-gradient(to bottom,black,transparent)" }}/></div><div className={`portfolio-shell relative z-10 w-full ${shellWidth} mx-auto pt-24 pb-28 sm:pt-28 px-5 sm:px-8` }>{children}</div><Navbar/></TooltipProvider></LocaleProvider></ThemeProvider></body></html>;
+  return <html lang={s.defaultLanguage} data-animation={s.animation} suppressHydrationWarning>
+    <body className={`${geist.variable} ${mono.variable} relative min-h-screen bg-background font-sans antialiased`} style={themeStyle(s) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }} />
+      <ThemeProvider attribute="class" defaultTheme={s.defaultTheme} enableSystem={s.defaultTheme === "system"} disableTransitionOnChange>
+        <SiteProvider initial={site}>
+          <LocaleProvider defaultLanguage={s.defaultLanguage}>
+            <TooltipProvider delayDuration={0}>
+              {s.backgroundGrid && <BackgroundGrid />}
+              <SiteHeader />
+              <main id="main" tabIndex={-1} className={`portfolio-shell relative z-10 mx-auto w-full ${shellWidthClass(s.contentWidth)} px-4 pt-24 pb-32 outline-none sm:px-8 sm:pt-28`}>{children}</main>
+              <Navbar />
+            </TooltipProvider>
+          </LocaleProvider>
+        </SiteProvider>
+      </ThemeProvider>
+    </body>
+  </html>;
 }

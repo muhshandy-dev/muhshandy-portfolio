@@ -10,7 +10,11 @@
     "cvUrl": "",
     "email": "nama@example.com",
     "phone": "",
-    "siteUrl": "http://localhost:3000"
+    "siteUrl": "http://localhost:3000",
+    "en": {
+      "description": "Building AI and data solutions that can be tested, explained, and used.",
+      "summary": "Welcome to my portfolio. Here I document my experience, skills, and AI/Data projects, from planning to reproducible results. Every project status is shown transparently."
+    }
   },
   "socialLinks": [],
   "skills": [
@@ -763,7 +767,10 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Profile"
+      }
     },
     {
       "id": "about",
@@ -779,7 +786,10 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "About Me"
+      }
     },
     {
       "id": "work",
@@ -795,7 +805,11 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Experience & Internships",
+        "subtitle": "Professional and organizational experience"
+      }
     },
     {
       "id": "education",
@@ -811,7 +825,10 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Education"
+      }
     },
     {
       "id": "skills",
@@ -827,7 +844,10 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Skills"
+      }
     },
     {
       "id": "projects",
@@ -843,7 +863,11 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Projects",
+        "subtitle": "Projects that have been built and verified, not just ideas."
+      }
     },
     {
       "id": "certifications",
@@ -859,7 +883,11 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Certifications",
+        "subtitle": "Certificates and learning evidence"
+      }
     },
     {
       "id": "activities",
@@ -875,7 +903,11 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Activities",
+        "subtitle": "Hackathons, communities, and other activities"
+      }
     },
     {
       "id": "blog",
@@ -891,7 +923,11 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Writing",
+        "subtitle": "Notes and learnings"
+      }
     },
     {
       "id": "contact",
@@ -907,7 +943,10 @@
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
-      "perPageMobile": 4
+      "perPageMobile": 4,
+      "en": {
+        "title": "Contact"
+      }
     }
   ],
   "settings": {
@@ -918,6 +957,11 @@
     "accentColor": "#2563eb",
     "faviconUrl": "",
     "contentWidth": "wide",
-    "languagePosition": "top-right"
+    "languagePosition": "top-right",
+    "en": {
+      "introGreeting": "Hi, I'm",
+      "contactHeading": "Let's connect",
+      "contactText": "Interested in a discussion or collaboration? Reach me by email or the social links below."
+    }
   }
 }

@@ -5,137 +5,56 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Layers3 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Markdown from "react-markdown";
 
+function Placeholder() {
+  return <div className="relative flex h-full min-h-32 w-full items-center justify-center overflow-hidden bg-linear-to-br from-muted via-secondary to-muted/70"><div className="absolute -right-8 -top-10 size-44 rounded-full border border-foreground/5" /><div className="absolute -bottom-20 -left-10 size-52 rounded-full border border-foreground/5" /><Layers3 className="size-12 text-muted-foreground/35" strokeWidth={1.2} aria-hidden="true" /></div>;
+}
+
 function ProjectImage({ src, alt }: { src: string; alt: string }) {
-  const [imageError, setImageError] = useState(false);
-
-  if (!src || imageError) {
-    return <div className="relative flex h-full min-h-32 w-full items-center justify-center overflow-hidden bg-linear-to-br from-muted via-secondary to-muted/70"><div className="absolute -right-8 -top-10 size-44 rounded-full border border-foreground/5"/><div className="absolute -bottom-20 -left-10 size-52 rounded-full border border-foreground/5"/><Layers3 className="size-12 text-muted-foreground/35" strokeWidth={1.2} aria-hidden="true" /></div>;
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className="w-full h-full object-cover"
-      onError={() => setImageError(true)}
-    />
-  );
+  const [failed, setFailed] = useState(false);
+  if (!src || failed) return <Placeholder />;
+  return <img src={src} alt={alt} loading="lazy" decoding="async" width={800} height={450} className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" onError={() => setFailed(true)} />;
 }
 
 interface Props {
   title: string;
-  compact?: boolean;
-  href?: string;
   description: string;
   dates: string;
   tags: readonly string[];
-  link?: string;
+  compact?: boolean;
+  /** Halaman detail proyek di situs ini. */
+  detailHref?: string;
+  detailLabel?: string;
   image?: string;
   video?: string;
-  links?: readonly {
-    icon: React.ReactNode;
-    type: string;
-    href: string;
-  }[];
+  badges?: ReactNode;
+  links?: readonly { icon: ReactNode; type: string; href: string }[];
   className?: string;
 }
 
-export function ProjectCard({
-  title,
-  compact = false,
-  href,
-  description,
-  dates,
-  tags,
-  link,
-  image,
-  video,
-  links,
-  className,
-}: Props) {
+export function ProjectCard({ title, description, dates, tags, compact = false, detailHref, detailLabel = "Detail", image, video, badges, links, className }: Props) {
   return (
-    <div
-      data-compact={compact}
-      className={cn(
-        "portfolio-project-card flex flex-col h-full border border-border rounded-xl overflow-hidden",
-        className
-      )}
-    >
-      <div className="project-media relative shrink-0">
-        <div className="block">
-          {video ? (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          ) : image ? (
-            <ProjectImage src={image} alt={title} />
-          ) : (
-            <div className="relative flex h-full min-h-32 w-full items-center justify-center overflow-hidden bg-linear-to-br from-muted via-secondary to-muted/70"><div className="absolute -right-8 -top-10 size-44 rounded-full border border-foreground/5"/><Layers3 className="size-12 text-muted-foreground/35" strokeWidth={1.2} aria-hidden="true" /></div>
-          )}
-        </div>
-        {links && links.length > 0 && (
-          <div className="absolute top-2 right-2 flex flex-wrap gap-2">
-            {links.map((link, idx) => (
-              <Link
-                href={link.href}
-                key={idx}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Badge
-                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"
-                  variant="default"
-                >
-                  {link.icon}
-                  {link.type}
-                </Badge>
-              </Link>
-            ))}
-          </div>
-        )}
+    <article data-compact={compact} className={cn("portfolio-project-card group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card", className)}>
+      <div className="project-media relative shrink-0 overflow-hidden bg-muted">
+        {video ? <video src={video} autoPlay loop muted playsInline preload="metadata" className="h-full w-full object-cover" /> : <ProjectImage src={image ?? ""} alt="" />}
       </div>
-      <div className="project-body p-4 sm:p-5 flex flex-col gap-3 flex-1">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex flex-col gap-1">
-            <h3 className="font-semibold text-sm sm:text-base leading-snug wrap-break-word">{title}</h3>
-            <time className="text-xs text-muted-foreground">{dates}</time>
-          </div>
-          {href && <Link
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-            aria-label={`Open ${title}`}
-          >
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </Link>}
+      <div className="project-body flex flex-1 flex-col gap-3 p-4 sm:p-5">
+        {badges && <div className="flex flex-wrap items-center gap-1.5">{badges}</div>}
+        <div className="flex flex-col gap-1">
+          <h3 className="text-sm font-semibold leading-snug wrap-break-word sm:text-base">
+            {detailHref ? <Link href={detailHref} className="card-link">{title}</Link> : title}
+          </h3>
+          {dates && <p className="text-xs text-muted-foreground">{dates}</p>}
         </div>
-        <div className="project-description text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-          <Markdown>{description}</Markdown>
-        </div>
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-auto">
-            {tags.map((tag) => (
-              <Badge
-                key={tag}
-                className="text-[11px] font-medium border border-border h-6 w-fit px-2"
-                variant="outline"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        )}
+        <div className="project-description prose prose-sm dark:prose-invert max-w-none flex-1 text-xs leading-relaxed text-pretty text-muted-foreground"><Markdown allowedElements={["p", "strong", "em", "code", "br"]} unwrapDisallowed>{description}</Markdown></div>
+        {tags.length > 0 && <ul className="flex flex-wrap gap-1" aria-label="Tech">{tags.map((tag) => <li key={tag}><Badge className="h-6 w-fit border border-border px-2 text-[11px] font-medium" variant="outline">{tag}</Badge></li>)}</ul>}
+        {(links?.length || detailHref) ? <div className="relative z-10 flex flex-wrap gap-2 pt-1">
+          {detailHref && <Link href={detailHref} className="ui-chip ui-chip-primary">{detailLabel}<ArrowUpRight className="size-3" aria-hidden /></Link>}
+          {links?.map((link) => <a key={link.href + link.type} href={link.href} target="_blank" rel="noopener noreferrer" className="ui-chip">{link.icon}{link.type}</a>)}
+        </div> : null}
       </div>
-    </div>
+    </article>
   );
 }

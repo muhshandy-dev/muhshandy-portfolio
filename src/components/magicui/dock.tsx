@@ -18,9 +18,7 @@ interface DockIconProps {
 
 const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 100;
-const BASE_SIZE = 40;
-const BASE_ICON_SIZE = 20;
-const ICON_SIZE_RATIO = 0.5;
+const BASE_SIZE = 44;
 const SPRING = { mass: 0.1, stiffness: 150, damping: 12 };
 
 interface DockContextValue {
@@ -37,7 +35,7 @@ const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, dist
   return (
     <DockContext.Provider value={{ mouseX, magnification, distance }}>
       <motion.div
-        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         className={cn("mx-auto w-max h-full flex items-end justify-center overflow-visible rounded-full border", className)}
       >
@@ -66,23 +64,15 @@ const DockIcon = ({ className, children }: DockIconProps) => {
     useTransform(distanceCalc, [-distance, 0, distance], [BASE_SIZE, magnification, BASE_SIZE]),
     SPRING
   );
-  const iconSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_ICON_SIZE, magnification * ICON_SIZE_RATIO, BASE_ICON_SIZE]),
-    SPRING
-  );
-
+  // Ikon mengikuti ukuran kontainer (lihat .dock-link di globals.css), sehingga area klik
+  // selalu seluas lingkaran dock, bukan hanya seluas ikon.
   return (
     <motion.div
       ref={ref}
       style={{ width: containerSize, height: containerSize }}
       className={cn("relative flex aspect-square items-center justify-center rounded-full shrink-0", className)}
     >
-      <motion.div
-        style={{ width: iconSize, height: iconSize }}
-        className="flex items-center justify-center"
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.div>
   );
 };
