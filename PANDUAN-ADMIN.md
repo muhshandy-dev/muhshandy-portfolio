@@ -1,71 +1,112 @@
-# Portfolio Studio — admin lokal untuk Magic UI
+# Panduan Admin — Portfolio Studio V5
 
-Ini adalah versi yang dimodifikasi dari source Magic UI portfolio milikmu (Next.js 16.1.1). **Tanpa database, tanpa akun berbayar, tanpa secret di browser.**
+Admin adalah editor **lokal**: hanya berjalan saat `pnpm dev` di laptopmu. Tombol **Simpan & publikasikan** menulis ke `src/data/site.json`; website online baru berubah setelah kamu commit, push, dan hosting melakukan build ulang.
 
-## 1. Pasang di Linux Mint (tanpa menghapus folder kerja atau Git)
-
-Pastikan project lamamu ada di `~/Projects/portfolio-saya` (sesuaikan kalau lokasimu berbeda).
-Simpan arsip unduhan `portfolio-saya-admin-v1.tar.gz` ke folder `~/Downloads`.
+## 1. Membuka admin
 
 ```bash
-# Matikan server lama (Ctrl+C), lalu buat cadangan data penting
 cd ~/Projects/portfolio-saya
-cp -f src/data/resume.tsx ~/Projects/resume-lama-backup.tsx 2>/dev/null || true
-
-# Kembali ke Projects dan timpa file proyek dengan versi admin; folder .git/node_modules aman
-cd ~/Projects
-tar -xzf ~/Downloads/portfolio-saya-admin-v1.tar.gz
-
-# Jalankan ulang (gunakan Node.js LTS 20+ dan pnpm)
-cd ~/Projects/portfolio-saya
-sh UPDATE-CLEANUP.sh
-pnpm install
 pnpm dev
 ```
 
-Buka:
-- `http://localhost:3000` → halaman publik
-- `http://localhost:3000/admin` → panel admin **hanya pada server development lokal**
+Buka `http://localhost:3000/admin`. Website publik ada di `http://localhost:3000`.
 
-## 2. Cara menggunakan
+## 2. Tata letak admin
 
-1. Buka `/admin`, pilih menu **Profil & pengaturan**, ganti Nama Kamu, email, foto, headline, bio, alamat publik.
-2. Menu **Proyek**: tambah, edit, hapus, urutkan; status `planned`, `in_progress`, `completed`, atau `live`.
-3. Menu **Magang & kerja**, **Pendidikan**, **Sertifikat**, **Skill**, **Kegiatan**, **Blog**, **Sosial**: semuanya dapat diatur.
-4. Menu **Tampilan & urutan**: ubah judul/subjudul, centang bagian yang tampil, geser naik/turun.
-5. Klik **Terapkan item** untuk menyimpan edit item ke draft form utama, lalu **Simpan perubahan** di bagian atas.
-6. Buka atau refresh halaman publik untuk melihat hasilnya. Fitur **Backup JSON** dan **Import JSON** bisa dipakai memindahkan data ke laptop lain.
+- **Bar atas**: status (tersimpan / ada perubahan / ada masalah), **Pratinjau**, **Batalkan** (buang perubahan yang belum disimpan), **Website**, **Simpan & publikasikan** (`Ctrl+S`).
+- **Menu kiri** (di HP menjadi deretan tab yang bisa digeser):
+  - *Konten*: Profil & CV, Proyek, Pengalaman, Pendidikan, Sertifikasi, Keahlian, Kegiatan, Blog, Media sosial
+  - *Tampilan*: Section & layout, Tema & animasi, Teks sapaan & kontak
+  - *Situs*: SEO & favicon, Backup & riwayat
+- **Pratinjau** (kanan, layar ≥1280px; di layar kecil tampil penuh): menampilkan draf secara langsung sebelum disimpan, dengan pilihan ukuran Desktop 1280px / Tablet 820px / HP 390px.
 
-Foto dan PDF ditulis ke `public/uploads/`. Konten disimpan ke **`src/data/site.json`**. Jangan lupa commit folder `uploads` saat ingin menerbitkan media. Ukuran maksimal 8 MiB per berkas, hanya PNG/JPG/WebP/PDF (tanpa SVG). Dokumen yang diunggah ke situs publik dapat diakses siapa saja: jangan unggah sertifikat berisi data rahasia tanpa menyamarkan detailnya.
+## 3. Mengelola isi (CRUD)
 
-**Batasan penting:** Admin ini **bukan** admin online multi-pengguna. Tidak ada halaman login atau server database. Penulisan file via API hanya aktif saat dev dan diakses melalui `localhost`; `/admin` dan endpoint write tidak tersedia saat build production (404). Jangan pakai tunnel publik atau membuka port dev ke internet. Untuk mengedit secara online di Vercel perlu backend terotentikasi (misalnya Supabase atau GitHub CMS); ini adalah tahap selanjutnya.
+Setiap koleksi memakai pola yang sama:
 
-## 3. Publikasikan ke GitHub → Vercel
+| Aksi | Cara |
+| --- | --- |
+| Tambah | Tombol **Tambah …** (item baru langsung terbuka) |
+| Edit | Klik baris item untuk membuka form, perubahan langsung terlihat di pratinjau |
+| Ubah urutan | Seret ikon ⋮⋮ (drag-and-drop) atau tombol ↑ ↓ (bisa dengan keyboard) |
+| Sembunyikan | Ikon mata: item tetap tersimpan tapi tidak tampil di website |
+| Duplikat | Ikon salin |
+| Hapus | Ikon tempat sampah (ada konfirmasi; versi lama tetap ada di Riwayat) |
+| Cari | Kotak cari muncul bila item lebih dari 6 |
 
-Pertama, siapkan GitHub repo dan Vercel yang sudah terhubung dengan repo itu. Setelah isi admin disimpan:
+Tambahan: **Keahlian** punya kolom *Tambah cepat* (`Python, SQL, Tableau`). **Blog** membuat slug otomatis dari judul. **Proyek** punya halaman detail `/projects/<id>` dengan field *Detail lengkap (Markdown)*, *Peran*, *Status* (Selesai / Sedang dikerjakan / Rencana), dan *Batasan & catatan jujur*.
 
+### Dua bahasa (ID/EN)
+Field teks yang bisa diterjemahkan tampil berdampingan: kolom **ID** (wajib) dan **EN** (opsional). Bila EN kosong, website memakai teks ID. Nama teknologi, URL, dan nama resmi tidak perlu diterjemahkan.
+
+### Upload gambar & PDF
+Klik **Unggah file** atau seret file ke kotak upload. Format: PNG, JPG, WebP, GIF, ICO, PDF (maks. 8 MB). SVG ditolak karena bisa berisi script. File tersimpan di `public/uploads/` dengan nama aman, lalu URL-nya terisi otomatis. Jangan unggah dokumen berisi data pribadi sensitif tanpa disamarkan: semua file di `public/` bisa diunduh siapa saja setelah dipublikasikan.
+
+## 4. Section & layout
+
+Per section kamu bisa mengatur: urutan (drag-and-drop), tampil/sembunyi, judul & subjudul ID/EN, gaya (daftar / kartu / ringkas), dan untuk section berisi koleksi:
+
+- **Mode konten**: *Carousel* (geser otomatis), *Grid* (semua atau dibatasi), *Pagination*
+- **Kolom** desktop (≥1024px), tablet (768–1023px), HP (<768px). Bila layar terlalu sempit, jumlah kolom dikurangi otomatis supaya kartu tidak terlalu kecil.
+- **Carousel**: putar otomatis on/off, jeda 3–20 detik
+- **Grid**: jumlah maksimal item sebelum tombol *Lihat semua*
+- **Pagination**: item per halaman desktop dan HP
+
+Bawaan: Proyek 4 kartu desktop, Sertifikasi 6 kartu desktop, keduanya carousel.
+
+### Perilaku carousel
+Bergeser kanan → kiri satu kartu, loop tanpa ujung; berhenti saat kursor di atas kartu, saat kartu disentuh/ditekan (lanjut 4 detik setelah dilepas), saat fokus keyboard di dalamnya, saat section tidak terlihat, dan saat tab browser tidak aktif. Ada tombol ‹ › , pause/play, *Lihat semua*, swipe di HP, dan panah kiri/kanan keyboard. Pengunjung dengan *prefers-reduced-motion* tidak mendapat autoplay (bisa menekan Play sendiri).
+
+## 5. Tema, SEO, dan teks
+
+- **Tema & animasi**: tema awal (terang/gelap/ikuti perangkat), warna aksen, sudut kartu, tingkat animasi (penuh/halus/mati), latar flickering grid, lebar konten, bahasa awal, posisi tombol ID/EN, banner data contoh.
+- **SEO & favicon**: alamat situs publik (untuk canonical, `sitemap.xml`, Open Graph), judul & deskripsi SEO, kata kunci, favicon, gambar share. `robots.txt` dan `sitemap.xml` dibuat otomatis.
+- **Teks sapaan & kontak**: sapaan di hero dan ajakan di section Kontak (ID/EN).
+
+## 6. Data contoh (SAMPLE / DEMO)
+
+Item dengan centang *Konten contoh* diberi label **CONTOH · DEMO** / **SAMPLE · DEMO** di website, dan banner peringatan tampil selama masih ada item demo. Sebelum mengirim portofolio ke rekruter: ganti isinya dengan data asli lalu hapus centangnya, atau pakai **Backup & riwayat → Hapus semua data contoh** (hanya item DEMO yang dihapus, item asli tidak disentuh).
+
+## 7. Keamanan penyimpanan data
+
+- Setiap simpan divalidasi dengan skema yang sama dipakai website. Data rusak (warna salah, URL `javascript:`, ID/slug ganda) tidak bisa disimpan dan field yang bermasalah ditandai.
+- Penulisan atomik + **cadangan otomatis** versi sebelumnya ke `.portfolio-backups/` (30 versi terakhir). Pulihkan lewat **Backup & riwayat → Muat ke editor**, lalu Simpan.
+- **Deteksi konflik**: bila `site.json` diubah dari tempat lain (tab lain, editor teks, `git pull`) setelah admin dibuka, simpan ditolak sampai kamu memuat ulang atau memilih *Timpa*.
+- **Backup JSON / Import JSON** untuk memindahkan data. File lama (V2–V4) otomatis dilengkapi saat diimpor.
+
+## 8. Keamanan admin
+
+Admin sengaja tanpa login karena hanya untuk laptop sendiri. Perlindungannya:
+
+1. `pnpm dev` hanya mendengarkan di `127.0.0.1`, jadi perangkat lain di Wi-Fi yang sama tidak bisa membuka admin. **Jangan** menjalankan `next dev -H 0.0.0.0` atau tunnel (ngrok, cloudflared) saat admin aktif.
+2. Endpoint `/api/admin/*` menolak Host/Origin selain localhost dan permintaan lintas situs, serta wajib membawa token acak per sesi server yang hanya ada di halaman `/admin`.
+3. Di build production dan ekspor statis, `/admin` dan `/api/admin/*` tidak ada (404). Ekspor statis bahkan tidak memuat kode admin sama sekali.
+
+Admin online (bisa edit dari mana saja) **belum** dibuat. Bila suatu saat dibutuhkan: perlu autentikasi sungguhan (mis. GitHub OAuth atau Cloudflare Access), otorisasi per endpoint tulis, dan penyimpanan persisten di server (mis. commit ke GitHub lewat API, atau Cloudflare D1/KV). localStorage tidak boleh menjadi sumber data utama.
+
+## 9. Publikasi
+
+### Cloudflare Pages (gratis, tanpa hibernasi) — disarankan
+1. Push repo ke GitHub.
+2. Cloudflare Pages → *Create project* → hubungkan repo.
+3. Build command: `pnpm build:static` · Output directory: `out` · Environment variable `NODE_VERSION` = `22`.
+4. Setelah dapat domain (mis. `https://nama.pages.dev`), isi **SEO & favicon → Alamat situs publik**, simpan, commit, push.
+
+### Alur harian
 ```bash
-cd ~/Projects/portfolio-saya
-git status
-git add src/data/site.json public/uploads src/app src/components src/lib PANDUAN-ADMIN.md
-# Kalau project baru diinisialisasi dari nol, tambahkan file lain dengan git add -A
-git commit -m "Update portfolio content"
-git push
+pnpm dev                     # edit di /admin, klik Simpan
+pnpm check                   # opsional: pastikan semua lulus
+git add src/data/site.json public/uploads
+git commit -m "Perbarui isi portofolio"
+git push                     # Cloudflare build ulang otomatis
 ```
 
-Vercel akan build ulang dari commit dan memperbarui website publik. Ini **tidak langsung terpublikasi dari tombol Simpan**; tombol menyimpan file di laptop saja. Setiap orang yang clone template ini punya admin lokal dan `site.json` masing-masing.
+## 10. Uji browser (opsional)
 
-Setelah mendapat domain Vercel, ubah **Profil → Alamat situs publik** menjadi `https://DOMAIN-KAMU.vercel.app`, simpan, dan push. Metadata SEO dan gambar preview akan ikut berubah ketika deploy selesai.
+`scripts/e2e/portfolio.e2e.cjs` menguji halaman publik, carousel, navigasi, bahasa, tema, dan seluruh CRUD admin di browser sungguhan. Butuh Playwright (`npm i -g playwright && npx playwright install chromium`). Jalankan saat `pnpm dev` aktif:
 
-## 4. Hubungan dengan master plan
+```bash
+node scripts/e2e/portfolio.e2e.cjs http://127.0.0.1:3000
+```
 
-10 proyek AI/Data dari *Audit Teknis Master Plan 11 Website AI & Data* diisi sebagai **rencana** dan tidak terlihat di halaman publik pada kondisi awal. Di `/admin → Profil & pengaturan`, centang "Tampilkan proyek planned" jika ingin memperlihatkan roadmap dengan label **Rencana · belum dibuat**. Saat selesai, ubah statusnya sesuai bukti sebenarnya. Jangan isi angka metrik, URL demo atau klaim deployment sampai benar-benar ada bukti dalam repo / evaluation/. Website portofolio ini adalah "Website 00" dari master plan, bukan pengganti 10 website proyek.
-
-## 5. Jika ada error
-
-- `pnpm: command not found`: jalankan `npm install -g pnpm` lalu ulangi.
-- Halaman admin 404: pastikan perintah yang digunakan `pnpm dev`, bukan `pnpm start`; akses dari `localhost`.
-- Setelah simpan tidak berubah: refresh browser (Ctrl+Shift+R). Jika perlu, hentikan `pnpm dev` dan mulai lagi.
-- Build gagal karena koneksi Google Fonts: cek koneksi internet saat build, terutama akses Google Fonts.
-
-Lisensi asal template tetap dipertahankan. Kode ini adalah template portofolio personal reusable, belum platform SaaS dengan akun terpisah.
+Tes ini mengubah `site.json` lewat admin, lalu mengembalikannya persis seperti semula di akhir (juga bila gagal).

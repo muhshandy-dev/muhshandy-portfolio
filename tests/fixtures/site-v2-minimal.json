@@ -1,0 +1,16 @@
+{
+  "profile": { "name": "Nama Kamu", "headline": "Data Analyst", "description": "Deskripsi", "summary": "Ringkasan", "location": "Bandung", "locationUrl": "", "avatarUrl": "", "cvUrl": "", "email": "a@b.co", "phone": "", "siteUrl": "" },
+  "socialLinks": [{ "id": "gh", "label": "GitHub", "href": "https://github.com/x", "icon": "github", "dock": true }],
+  "skills": [{ "id": "s1", "name": "Python" }],
+  "work": [],
+  "education": [],
+  "projects": [{ "id": "p1", "title": "Proyek Lama", "description": "Deskripsi lama", "dates": "2025", "technologies": ["Python"], "href": "", "repoUrl": "", "image": "", "video": "", "evaluationUrl": "", "limitations": "", "customNote": "field buatan pengguna" }],
+  "certifications": [],
+  "activities": [],
+  "posts": [],
+  "sections": [
+    { "id": "about", "title": "Tentang", "subtitle": "", "visible": true, "layout": "list", "columns": 1 },
+    { "id": "projects", "title": "Proyek Saya", "subtitle": "", "visible": true, "layout": "cards", "columns": 3 }
+  ],
+  "settings": { "contactHeading": "Hubungi", "contactText": "Teks", "introGreeting": "Hai", "accentColor": "#0d9488" }
+}

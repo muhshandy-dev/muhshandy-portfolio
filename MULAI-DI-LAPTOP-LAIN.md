@@ -1,35 +1,61 @@
-# Menjalankan Portfolio Studio di laptop lain
-
-Paket ini berisi source code lengkap Portfolio Studio V4, termasuk source Next.js, aset, data contoh, konfigurasi, lockfile, dan panduan admin. Folder `node_modules` sengaja tidak disertakan supaya ZIP lebih ringan; dependensi akan diunduh di laptop tujuan.
+# Menjalankan Portfolio Studio V5
 
 ## Prasyarat
-
-- Node.js versi LTS terbaru (disarankan Node.js 22 atau lebih baru)
-- pnpm
+- **Node.js 22 LTS** (minimal 22.6, dibutuhkan oleh `pnpm test`/`verify`; Next.js 16 sendiri butuh ≥ 20.9)
+- pnpm (`npm install -g pnpm`)
 - Browser modern
 
-## Linux Mint / Ubuntu
-
-1. Ekstrak ZIP.
-2. Buka Terminal di folder `portfolio-saya`.
-3. Jalankan:
+## Linux Mint / Ubuntu — instal baru
 
 ```bash
+# Node 22 lewat nvm (bila belum ada)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+source ~/.bashrc
+nvm install 22
 npm install -g pnpm
+
+# Proyek
+cd ~/Projects
+unzip ~/Downloads/portfolio-saya-v5.zip
+cd portfolio-saya
 pnpm install
 pnpm dev
 ```
 
-4. Buka `http://localhost:3000` untuk melihat portofolio.
-5. Buka `http://localhost:3000/admin` untuk mengedit konten.
+Buka `http://localhost:3000` (website) dan `http://localhost:3000/admin` (admin). `Ctrl+C` untuk berhenti.
 
-Biarkan terminal tetap berjalan saat menggunakan website. Tekan `Ctrl+C` untuk menghentikan server.
+## Upgrade dari V4 (data lama tetap aman)
 
-## Windows
+Pakai **folder baru**, jangan menimpa folder V4 (beberapa file V4 dipindah/diganti nama; file lama yang tertinggal bisa bentrok).
 
-1. Instal Node.js LTS dari situs resmi Node.js.
-2. Buka PowerShell di folder `portfolio-saya`.
-3. Jalankan:
+```bash
+cd ~/Projects
+# 1. Cadangkan folder lama
+tar -czf "portfolio-v4-backup-$(date +%Y%m%d-%H%M%S).tar.gz" --exclude=node_modules --exclude=.next portfolio-saya
+mv portfolio-saya portfolio-saya-v4
+
+# 2. Ekstrak V5
+unzip ~/Downloads/portfolio-saya-v5.zip       # menghasilkan folder portfolio-saya
+
+# 3. Bawa data dan unggahanmu
+cp portfolio-saya-v4/src/data/site.json portfolio-saya/src/data/site.json
+cp -r portfolio-saya-v4/public/uploads portfolio-saya/public/ 2>/dev/null || true
+cp -r portfolio-saya-v4/.portfolio-backups portfolio-saya/ 2>/dev/null || true
+# Bila folder V4 adalah repo git, pindahkan juga riwayatnya:
+[ -d portfolio-saya-v4/.git ] && cp -r portfolio-saya-v4/.git portfolio-saya/
+
+# 4. Jalankan
+cd portfolio-saya
+pnpm install
+pnpm verify        # cek site.json lama terbaca
+pnpm dev
+```
+
+`site.json` versi lama langsung terbaca tanpa migrasi (field baru otomatis diberi nilai bawaan, field lama tidak dibuang). `pnpm migrate` opsional: menulis field baru ke file supaya terlihat, dengan cadangan di `.portfolio-backups/`.
+
+Catatan: `site.json` di paket V5 sudah berisi terjemahan EN untuk judul section, deskripsi profil, dan teks kontak. Bila kamu menyalin `site.json` lamamu, isi terjemahan itu lewat admin (bagian *Section & layout*, *Profil & CV*, *Teks sapaan & kontak*).
+
+## Windows (PowerShell)
 
 ```powershell
 npm install -g pnpm
@@ -37,12 +63,6 @@ pnpm install
 pnpm dev
 ```
 
-4. Buka `http://localhost:3000` dan `http://localhost:3000/admin`.
-
-## Catatan penting
-
-- `src/data/site.json` menyimpan data konten awal/demo.
-- File yang diunggah melalui admin lokal dapat tersimpan di folder proyek; setelah memindahkan proyek ke laptop lain, pindahkan juga file unggahan yang dirujuk data jika ada.
-- `node_modules` tidak disertakan; jalankan `pnpm install` di laptop tujuan.
-- Admin ini adalah editor lokal. API penulisan dan upload hanya diaktifkan saat development di localhost; belum merupakan admin online multi-user.
-- Untuk publikasi, baca `PANDUAN-ADMIN-V4.md` dan README utama.
+## Catatan
+- `node_modules`, `.next`, `out`, dan `.portfolio-backups` tidak disertakan dan tidak di-commit.
+- File unggahan ada di `public/uploads/`; ikut commit bila ingin dipublikasikan.
