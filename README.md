@@ -19,6 +19,7 @@ pnpm dev          # http://localhost:3000  dan  http://localhost:3000/admin
 
 Dokumentasi:
 - [PANDUAN-ADMIN.md](./PANDUAN-ADMIN.md) — cara memakai admin, deploy, keamanan
+- [docs/DEPLOY_CLOUDFLARE.md](./docs/DEPLOY_CLOUDFLARE.md) — pengaturan Cloudflare Pages dan pemeriksaan setelah deploy
 - [MULAI-DI-LAPTOP-LAIN.md](./MULAI-DI-LAPTOP-LAIN.md) — instalasi Linux Mint / Windows dan upgrade dari V4
 - [CHANGELOG.md](./CHANGELOG.md) — daftar perubahan V5
 - [LAPORAN-AUDIT-DAN-PENGUJIAN.md](./LAPORAN-AUDIT-DAN-PENGUJIAN.md) — temuan audit dan hasil uji PASS/FAIL/NOT TESTED

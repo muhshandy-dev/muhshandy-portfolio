@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck, lint, unit test, validasi data, build
+        run: pnpm check
+      - name: Build statis (yang di-deploy ke Cloudflare Pages)
+        run: pnpm build:static
+        env:
+          SITE_URL: https://muhshandy-portfolio.pages.dev
+      - name: Pastikan admin tidak ikut ter-ekspor
+        run: |
+          test -f out/index.html
+          test ! -e out/admin && test ! -e out/admin.html && test ! -d out/api
+          grep -q "https://muhshandy-portfolio.pages.dev/sitemap.xml" out/robots.txt
