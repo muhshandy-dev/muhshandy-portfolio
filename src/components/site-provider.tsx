@@ -9,14 +9,14 @@ export const PREVIEW_MESSAGE = "portfolio-preview";
 
 /**
  * Menyediakan data situs ke komponen klien.
- * Mode pratinjau (hanya development, URL ?preview=1 di dalam iframe admin): menerima draf
- * dari admin lewat postMessage dari origin yang sama, lalu menampilkannya tanpa menyimpan.
+ * Mode pratinjau (URL ?preview=1 di dalam iframe admin, lokal maupun online): menerima draf dari admin
+ * lewat postMessage dari origin dan jendela induk yang sama, lalu menampilkannya di peramban itu saja tanpa menyimpan.
+ * Pengunjung biasa tidak terpengaruh: tanpa ?preview=1 dan iframe, tidak ada yang dimuat.
  */
 export function SiteProvider({ initial, children }: { initial: SiteData; children: ReactNode }) {
   const [data, setData] = useState(initial);
   const [preview, setPreview] = useState(false);
   useEffect(() => {
-    if (process.env.NODE_ENV !== "development") return;
     if (!new URLSearchParams(window.location.search).has("preview") || window.parent === window) return;
     const onMessage = async (event: MessageEvent) => {
       if (event.origin !== window.location.origin || event.source !== window.parent) return;

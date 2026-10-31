@@ -31,8 +31,10 @@ jobs:
         run: pnpm build:static
         env:
           SITE_URL: https://muhshandy-portfolio.pages.dev
-      - name: Pastikan admin tidak ikut ter-ekspor
+      - name: Pastikan hasil statis benar (admin online ada, API admin lokal tidak ikut)
         run: |
           test -f out/index.html
-          test ! -e out/admin && test ! -e out/admin.html && test ! -d out/api
+          test -f out/admin/index.html && test -f out/admin/login/index.html
+          test ! -d out/api
+          test -f functions/admin/_middleware.ts && test -f functions/api/admin/_middleware.ts
           grep -q "https://muhshandy-portfolio.pages.dev/sitemap.xml" out/robots.txt

@@ -1,6 +1,11 @@
 # Panduan Admin — Portfolio Studio V5
 
-Admin adalah editor **lokal**: hanya berjalan saat `pnpm dev` di laptopmu. Tombol **Simpan & publikasikan** menulis ke `src/data/site.json`; website online baru berubah setelah kamu commit, push, dan hosting melakukan build ulang.
+Ada dua cara memakai admin yang sama:
+
+- **Online** (paling mudah, tanpa install): `https://<situsmu>.pages.dev/admin/`, login dengan kata sandi. **Simpan & publikasikan** membuat commit ke GitHub dan Cloudflare membangun ulang situs. Setup sekali: [docs/ADMIN_ONLINE.md](./docs/ADMIN_ONLINE.md).
+- **Lokal** (bagian 1 di bawah): hanya berjalan saat `pnpm dev` di laptopmu. Tombol **Simpan & publikasikan** menulis ke `src/data/site.json`; website online baru berubah setelah kamu commit, push, dan hosting melakukan build ulang.
+
+Tampilan dan fitur edit sama di keduanya. Perbedaan: riwayat versi online = riwayat commit GitHub, dan unggahan online dibatasi 2 MB per file.
 
 ## 1. Membuka admin
 

@@ -16,6 +16,7 @@
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \"tests/*.test.ts\"",
     "verify": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-data.mjs",
     "migrate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/migrate-v5.mjs",
+    "e2e:admin-online": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/e2e/admin-online.e2e.mjs",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm verify && pnpm build"
   },
   "dependencies": {

@@ -1,11 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useId, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useId, useRef, useState, type ReactNode } from "react";
 import { FileText, Loader2, Trash2, Upload } from "lucide-react";
 import type { FieldDef } from "./config";
 
 export type UploadFn = (file: File) => Promise<string>;
+
+/** Batas ukuran upload (MB) yang ditampilkan di form; admin online lebih kecil dari lokal. */
+export const UploadLimitContext = createContext(8);
+
+// Admin online: file baru baru tampil di situs setelah build selesai, jadi pratinjau di editor memakai salinan lokal dari peramban.
+const localPreviews = new Map<string, string>();
+export const rememberPreview = (url: string, file: File) => { localPreviews.set(url, URL.createObjectURL(file)); };
+export const previewSrc = (url: string) => localPreviews.get(url) ?? url;
 
 const ACCEPT: Record<string, string> = {
   image: ".png,.jpg,.jpeg,.webp,.gif,.ico,image/png,image/jpeg,image/webp,image/gif,image/x-icon",
@@ -37,6 +45,7 @@ function UploadInput({ id, kind, value, onChange, upload }: { id: string; kind: 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [over, setOver] = useState(false);
+  const limitMb = useContext(UploadLimitContext);
   const isPdf = /\.pdf($|\?)/i.test(value);
   async function handle(file?: File) {
     if (!file) return;
@@ -47,7 +56,7 @@ function UploadInput({ id, kind, value, onChange, upload }: { id: string; kind: 
   }
   return <div className={`adm-upload ${over ? "is-over" : ""}`} onDragOver={(e) => { e.preventDefault(); setOver(true); }} onDragLeave={() => setOver(false)} onDrop={(e) => { e.preventDefault(); setOver(false); void handle(e.dataTransfer.files?.[0]); }}>
     <div className="adm-upload-preview">
-      {value && !isPdf ? <img src={value} alt="" /> : value ? <FileText className="size-6 text-muted-foreground" aria-hidden /> : <Upload className="size-5 text-muted-foreground" aria-hidden />}
+      {value && !isPdf ? <img src={previewSrc(value)} alt="" /> : value ? <FileText className="size-6 text-muted-foreground" aria-hidden /> : <Upload className="size-5 text-muted-foreground" aria-hidden />}
     </div>
     <div className="min-w-0 flex-1 space-y-1.5">
       <input id={id} className="adm-input" value={value} placeholder="/uploads/… atau https://…" onChange={(e) => onChange(e.target.value)} />
@@ -55,7 +64,7 @@ function UploadInput({ id, kind, value, onChange, upload }: { id: string; kind: 
         <button type="button" className="adm-btn adm-btn-sm" onClick={() => fileRef.current?.click()} disabled={busy}>{busy ? <Loader2 className="size-3.5 animate-spin" aria-hidden /> : <Upload className="size-3.5" aria-hidden />}{busy ? "Mengunggah…" : "Unggah file"}</button>
         {value && <a className="adm-btn adm-btn-sm" href={value} target="_blank" rel="noopener noreferrer">Buka</a>}
         {value && <button type="button" className="adm-btn adm-btn-sm" onClick={() => onChange("")} aria-label="Kosongkan file"><Trash2 className="size-3.5" aria-hidden />Kosongkan</button>}
-        <span className="text-[11px] text-muted-foreground">{kind === "pdf" ? "PDF" : kind === "image" ? "PNG/JPG/WebP/GIF/ICO" : "Gambar atau PDF"}, maks. 8 MB · bisa drag & drop</span>
+        <span className="text-[11px] text-muted-foreground">{kind === "pdf" ? "PDF" : kind === "image" ? "PNG/JPG/WebP/GIF/ICO" : "Gambar atau PDF"}, maks. {limitMb} MB · bisa drag & drop</span>
       </div>
       {error && <p className="adm-error" role="alert">{error}</p>}
     </div>

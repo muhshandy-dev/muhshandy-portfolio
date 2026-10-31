@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ArrowDown, ArrowUp, ChevronDown, Copy, Eye, EyeOff, GripVertical, Plus, Search, Trash2 } from "lucide-react";
 import type { CollectionKey, SiteData } from "@/lib/site-schema";
 import { collections } from "./config";
-import { Field, type UploadFn } from "./fields";
+import { Field, previewSrc, type UploadFn } from "./fields";
 import { moveItem, newId, pathKey, slugify } from "./utils";
 
 type Item = Record<string, unknown> & { id: string; en?: Record<string, string> };
@@ -72,7 +72,7 @@ export function CollectionEditor({ k, data, onChange, upload, errors }: { k: Col
         return <li key={it.id} id={`item-${it.id}`} className="adm-row" {...(q ? {} : rowProps(index))} data-open={isOpen || undefined}>
           <div className="adm-row-head">
             {!q && <span className="adm-handle" {...handleProps(index)} title="Seret untuk mengubah urutan" aria-hidden><GripVertical className="size-4" /></span>}
-            {cfg.thumb && <span className="adm-thumb">{thumb && !/\.pdf$/i.test(thumb) ? <img src={thumb} alt="" /> : null}</span>}
+            {cfg.thumb && <span className="adm-thumb">{thumb && !/\.pdf$/i.test(thumb) ? <img src={previewSrc(thumb)} alt="" /> : null}</span>}
             <button type="button" className="adm-row-title" onClick={() => setOpen(isOpen ? null : it.id)} aria-expanded={isOpen} aria-controls={`edit-${it.id}`}>
               <span className="min-w-0 flex-1">
                 <span className="flex flex-wrap items-center gap-1.5"><span className="truncate font-medium">{title}</span>
