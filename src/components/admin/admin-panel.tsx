@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { AlertTriangle, CheckCircle2, Download, ExternalLink, History, Loader2, Monitor, PanelRightClose, PanelRightOpen, RotateCcw, Save, Smartphone, Tablet, Trash2, Upload } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Download, ExternalLink, History, Loader2, LogOut, Monitor, PanelRightClose, PanelRightOpen, RotateCcw, Save, Smartphone, Tablet, Trash2, Upload } from "lucide-react";
 import { COLLECTION_KEYS, parseSite, type CollectionKey, type SiteData } from "@/lib/site-schema";
 import { PREVIEW_MESSAGE } from "@/components/site-provider";
 import { collections, contactFields, profileFields, seoFields, type FieldDef } from "./config";
-import { Field, type UploadFn } from "./fields";
+import { Field, rememberPreview, UploadLimitContext, type UploadFn } from "./fields";
 import { CollectionEditor } from "./collection-editor";
 import { SectionsEditor } from "./sections-editor";
 import { pathKey, setAt, type Path } from "./utils";
@@ -34,7 +34,18 @@ const themeFields: FieldDef[] = [
 
 type Msg = { kind: "ok" | "error" | "info"; text: string; action?: { label: string; run: () => void } } | null;
 
-export default function AdminPanel({ initialData, initialRevision, token }: { initialData: SiteData; initialRevision: string; token: string }) {
+/** Dibaca sebagai base64 di peramban supaya server online tidak perlu menyandi file besar. */
+function toBase64(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
+    reader.onerror = () => reject(new Error("File tidak bisa dibaca"));
+    reader.readAsDataURL(file);
+  });
+}
+
+export default function AdminPanel({ initialData, initialRevision, token = "", mode = "local" }: { initialData: SiteData; initialRevision: string; token?: string; mode?: "local" | "online" }) {
+  const online = mode === "online";
   const [data, setData] = useState<SiteData>(initialData);
   const [saved, setSaved] = useState<SiteData>(initialData);
   const [revision, setRevision] = useState(initialRevision);
@@ -55,16 +66,19 @@ export default function AdminPanel({ initialData, initialRevision, token }: { in
   }, [validation]);
 
   const set = useCallback((path: Path, value: unknown) => setData((d) => setAt(d, path, value)), []);
-  const headers = useMemo(() => ({ "x-admin-token": token }), [token]);
+  const headers = useMemo(() => { const h: Record<string, string> = {}; if (token) h["x-admin-token"] = token; return h; }, [token]);
 
   const upload: UploadFn = useCallback(async (file) => {
-    const form = new FormData(); form.append("file", file);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: form, headers });
+    let res: Response;
+    if (online) res = await fetch(`/api/admin/upload?name=${encodeURIComponent(file.name)}`, { method: "POST", headers: { "Content-Type": "text/plain" }, body: await toBase64(file) });
+    else { const form = new FormData(); form.append("file", file); res = await fetch("/api/admin/upload", { method: "POST", body: form, headers }); }
     const json = await res.json().catch(() => ({}));
+    if (res.status === 401) throw new Error("Sesi login habis. Buka /admin/login di tab baru, login lagi, lalu ulangi unggah (perubahan di tab ini tetap aman).");
     if (!res.ok) throw new Error(json.error || `Upload gagal (${res.status})`);
-    setMsg({ kind: "info", text: `${file.name} terunggah. Klik Simpan untuk mempublikasikan perubahan.` });
+    if (online) rememberPreview(json.url as string, file);
+    setMsg({ kind: "info", text: online ? `${file.name} terunggah ke GitHub. Gambar baru tampil di website setelah Simpan & publikasikan selesai dibangun (1–2 menit).` : `${file.name} terunggah. Klik Simpan untuk mempublikasikan perubahan.` });
     return json.url as string;
-  }, [headers]);
+  }, [headers, online]);
 
   const save = useCallback(async (force = false) => {
     if (!validation.success) { setMsg({ kind: "error", text: `Belum bisa disimpan: ${errors.size} masalah. ${[...errors.entries()].slice(0, 3).map(([p, m]) => `${p}: ${m}`).join(" · ")}` }); return; }
@@ -72,13 +86,14 @@ export default function AdminPanel({ initialData, initialRevision, token }: { in
     try {
       const res = await fetch("/api/admin/site", { method: "POST", headers: { "Content-Type": "application/json", ...headers }, body: JSON.stringify({ data: validation.data, baseRevision: revision, force }) });
       const json = await res.json().catch(() => ({}));
-      if (res.status === 409) { setMsg({ kind: "error", text: "site.json sudah diubah di luar editor ini (tab lain atau editor teks). Muat ulang halaman untuk mengambil versi terbaru, atau timpa dengan versi ini.", action: { label: "Timpa dengan versi ini", run: () => { if (window.confirm("Timpa site.json? Versi yang sekarang tetap dicadangkan di Riwayat.")) void save(true); } } }); return; }
+      if (res.status === 401) { setMsg({ kind: "error", text: "Sesi login habis. Perubahanmu masih ada di halaman ini. Buka halaman login di tab baru, login lagi, lalu kembali ke sini dan klik Simpan.", action: { label: "Buka halaman login", run: () => window.open("/admin/login/", "_blank", "noopener") } }); return; }
+      if (res.status === 409) { setMsg({ kind: "error", text: online ? "Isi situs di GitHub sudah berubah sejak halaman ini dibuka (tab lain, perangkat lain, atau edit langsung di GitHub). Muat ulang halaman untuk mengambil versi terbaru, atau timpa dengan versi ini." : "site.json sudah diubah di luar editor ini (tab lain atau editor teks). Muat ulang halaman untuk mengambil versi terbaru, atau timpa dengan versi ini.", action: { label: "Timpa dengan versi ini", run: () => { if (window.confirm("Timpa site.json? Versi yang sekarang tetap dicadangkan di Riwayat.")) void save(true); } } }); return; }
       if (!res.ok) throw new Error((json.error || `Gagal (${res.status})`) + (json.details ? `: ${json.details.join("; ")}` : ""));
       setSaved(json.data); setData(json.data); setRevision(json.revision);
-      setMsg({ kind: "ok", text: `Tersimpan ke src/data/site.json pukul ${new Date().toLocaleTimeString("id-ID")}. Versi sebelumnya dicadangkan.` });
+      setMsg({ kind: "ok", text: online ? `Terkirim ke GitHub pukul ${new Date().toLocaleTimeString("id-ID")}. Cloudflare sedang membangun ulang; website online berubah sekitar 1–2 menit lagi. Versi sebelumnya ada di Riwayat.` : `Tersimpan ke src/data/site.json pukul ${new Date().toLocaleTimeString("id-ID")}. Versi sebelumnya dicadangkan.` });
     } catch (e) { setMsg({ kind: "error", text: e instanceof Error ? e.message : "Gagal menyimpan" }); }
     finally { setSaving(false); }
-  }, [validation, errors, revision, headers]);
+  }, [validation, errors, revision, headers, online]);
 
   // Ctrl/Cmd+S untuk simpan, dan peringatan sebelum menutup tab bila ada perubahan.
   useEffect(() => {
@@ -141,14 +156,14 @@ export default function AdminPanel({ initialData, initialRevision, token }: { in
   else if (tab === "seo") content = <Panel title="SEO & favicon" caption="Judul dan deskripsi untuk Google dan media sosial. Berlaku setelah build/deploy ulang.">
     <div className="adm-grid">{profileSet({ key: "siteUrl", label: "Alamat situs publik", kind: "url", wide: true, placeholder: "https://nama.pages.dev", help: "Dipakai untuk canonical URL, sitemap.xml, dan Open Graph." })}{seoFields.map(settingSet)}</div>
   </Panel>;
-  else content = <DataPanel headers={headers} onLoad={(d, name) => { setData(d); setMsg({ kind: "info", text: `Versi ${name} dimuat ke editor. Tinjau lalu klik Simpan untuk memulihkannya.` }); }} onExport={exportJSON} onImport={() => importRef.current?.click()} onRemoveDemo={removeDemo} demoCounts={demoCounts.map(([k, n]) => `${collections[k].title} ${n}`)} />;
+  else content = <DataPanel online={online} headers={headers} onLoad={(d, name) => { setData(d); setMsg({ kind: "info", text: `Versi ${name} dimuat ke editor. Tinjau lalu klik Simpan untuk memulihkannya.` }); }} onExport={exportJSON} onImport={() => importRef.current?.click()} onRemoveDemo={removeDemo} demoCounts={demoCounts.map(([k, n]) => `${collections[k].title} ${n}`)} />;
 
   const scale = useFitScale(DEVICES[device].w, previewOpen);
 
-  return <div className="portfolio-admin" data-preview={previewOpen || undefined}>
+  return <UploadLimitContext.Provider value={online ? 2 : 8}><div className="portfolio-admin" data-preview={previewOpen || undefined}>
     <header className="adm-topbar">
       <div className="min-w-0">
-        <p className="text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">Portfolio Studio · Admin lokal</p>
+        <p className="text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">Portfolio Studio · {online ? "Admin online" : "Admin lokal"}</p>
         <p className="flex items-center gap-1.5 text-sm font-medium" role="status" aria-live="polite">
           {saving ? <><Loader2 className="size-4 animate-spin" aria-hidden />Menyimpan…</> : errors.size ? <><AlertTriangle className="size-4 text-amber-500" aria-hidden />{errors.size} masalah perlu diperbaiki</> : dirty ? <><span className="size-2 rounded-full bg-amber-500" aria-hidden />Ada perubahan belum disimpan</> : <><CheckCircle2 className="size-4 text-emerald-500" aria-hidden />Semua perubahan tersimpan</>}
         </p>
@@ -157,6 +172,7 @@ export default function AdminPanel({ initialData, initialRevision, token }: { in
         <button type="button" className="adm-btn" onClick={() => setPreviewOpen((v) => !v)} aria-pressed={previewOpen}>{previewOpen ? <PanelRightClose className="size-4" aria-hidden /> : <PanelRightOpen className="size-4" aria-hidden />}Pratinjau</button>
         <button type="button" className="adm-btn" aria-label="Batalkan" title="Batalkan perubahan yang belum disimpan" onClick={() => { if (window.confirm("Buang semua perubahan yang belum disimpan?")) { setData(saved); setMsg(null); } }} disabled={!dirty || saving}><RotateCcw className="size-4" aria-hidden /><span className="adm-btn-label">Batalkan</span></button>
         <a className="adm-btn" aria-label="Website" title="Buka website di tab baru" href="/" target="_blank" rel="noopener noreferrer"><ExternalLink className="size-4" aria-hidden /><span className="adm-btn-label">Website</span></a>
+        {online && <button type="button" className="adm-btn" aria-label="Keluar" title="Keluar dari admin" onClick={() => { if (dirty && !window.confirm("Ada perubahan yang belum disimpan. Tetap keluar?")) return; void fetch("/api/admin/logout", { method: "POST" }).finally(() => window.location.assign("/admin/login/")); }}><LogOut className="size-4" aria-hidden /><span className="adm-btn-label">Keluar</span></button>}
         <button type="button" className="adm-btn adm-btn-primary" onClick={() => void save()} disabled={saving || !dirty} title="Ctrl+S"><Save className="size-4" aria-hidden />{dirty ? "Simpan & publikasikan" : "Tersimpan"}</button>
       </div>
       <input ref={importRef} hidden type="file" accept="application/json,.json" onChange={(e) => void importJSON(e.target.files?.[0])} />
@@ -179,7 +195,7 @@ export default function AdminPanel({ initialData, initialRevision, token }: { in
         </div>
       </aside>}
     </div>
-  </div>;
+  </div></UploadLimitContext.Provider>;
 }
 
 function useFitScale(width: number, active: boolean) {
@@ -197,8 +213,8 @@ function Panel({ title, caption, children }: { title: string; caption: string; c
   return <div className="space-y-5"><div><h2 className="text-xl font-semibold">{title}</h2><p className="text-sm text-muted-foreground">{caption}</p></div>{children}</div>;
 }
 
-function DataPanel({ headers, onLoad, onExport, onImport, onRemoveDemo, demoCounts }: { headers: Record<string, string>; onLoad: (d: SiteData, name: string) => void; onExport: () => void; onImport: () => void; onRemoveDemo: () => void; demoCounts: string[] }) {
-  const [backups, setBackups] = useState<{ name: string; size: number; time: string }[] | null>(null);
+function DataPanel({ online, headers, onLoad, onExport, onImport, onRemoveDemo, demoCounts }: { online: boolean; headers: Record<string, string>; onLoad: (d: SiteData, name: string) => void; onExport: () => void; onImport: () => void; onRemoveDemo: () => void; demoCounts: string[] }) {
+  const [backups, setBackups] = useState<{ name: string; size?: number; time: string; label?: string }[] | null>(null);
   const [error, setError] = useState("");
   const load = useCallback(async () => {
     try { const res = await fetch("/api/admin/backups", { headers }); const json = await res.json(); if (!res.ok) throw new Error(json.error); setBackups(json.backups); }
@@ -213,7 +229,7 @@ function DataPanel({ headers, onLoad, onExport, onImport, onRemoveDemo, demoCoun
       onLoad(parsed.data, name);
     } catch (e) { setError(e instanceof Error ? e.message : "Gagal membuka cadangan"); }
   }
-  return <Panel title="Backup & riwayat" caption="Setiap kali menyimpan, versi sebelumnya disalin ke folder .portfolio-backups (30 versi terakhir).">
+  return <Panel title="Backup & riwayat" caption={online ? "Setiap penyimpanan adalah satu commit di GitHub. Daftar ini menampilkan 30 versi terakhir dari src/data/site.json." : "Setiap kali menyimpan, versi sebelumnya disalin ke folder .portfolio-backups (30 versi terakhir)."}>
     <div className="flex flex-wrap gap-2">
       <button type="button" className="adm-btn" onClick={onExport}><Download className="size-4" aria-hidden />Unduh backup JSON</button>
       <button type="button" className="adm-btn" onClick={onImport}><Upload className="size-4" aria-hidden />Import backup JSON</button>
@@ -223,8 +239,8 @@ function DataPanel({ headers, onLoad, onExport, onImport, onRemoveDemo, demoCoun
     <div className="space-y-2">
       <h3 className="flex items-center gap-2 font-semibold"><History className="size-4" aria-hidden />Riwayat versi</h3>
       {error && <p className="adm-error">{error}</p>}
-      {backups === null ? <p className="text-sm text-muted-foreground">Memuat…</p> : backups.length === 0 ? <p className="text-sm text-muted-foreground">Belum ada cadangan. Cadangan dibuat otomatis saat menyimpan.</p> :
-        <ul className="divide-y rounded-xl border">{backups.map((b) => <li key={b.name} className="flex items-center justify-between gap-2 p-3 text-sm"><span className="min-w-0"><span className="block truncate font-mono text-xs">{b.name}</span><span className="text-xs text-muted-foreground">{new Date(b.time).toLocaleString("id-ID")} · {(b.size / 1024).toFixed(1)} KB</span></span><button type="button" className="adm-btn adm-btn-sm" onClick={() => void open(b.name)}>Muat ke editor</button></li>)}</ul>}
+      {backups === null ? <p className="text-sm text-muted-foreground">Memuat…</p> : backups.length === 0 ? <p className="text-sm text-muted-foreground">Belum ada riwayat. Riwayat dibuat otomatis saat menyimpan.</p> :
+        <ul className="divide-y rounded-xl border">{backups.map((b) => <li key={b.name} className="flex items-center justify-between gap-2 p-3 text-sm"><span className="min-w-0"><span className="block truncate font-mono text-xs">{b.label ? `${b.name.slice(0, 7)} · ${b.label}` : b.name}</span><span className="text-xs text-muted-foreground">{new Date(b.time).toLocaleString("id-ID")}{b.size !== undefined ? ` · ${(b.size / 1024).toFixed(1)} KB` : ""}</span></span><button type="button" className="adm-btn adm-btn-sm" onClick={() => void open(b.name)}>Muat ke editor</button></li>)}</ul>}
     </div>
   </Panel>;
 }

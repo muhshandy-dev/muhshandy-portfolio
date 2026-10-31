@@ -1,5 +1,12 @@
 # Changelog
 
+## V5.1 — Admin online
+- Admin bisa dipakai online di `/admin/` (Cloudflare Pages Functions): login kata sandi, sesi cookie HttpOnly 8 jam, simpan lewat commit ke GitHub (Cloudflare membangun ulang otomatis), unggah gambar/PDF ke repo, riwayat = commit GitHub, deteksi konflik lewat sha file.
+- Fail closed: tanpa `ADMIN_PASSWORD` (≥ 12 karakter) dan `GITHUB_TOKEN`, semua endpoint admin 503.
+- Pratinjau draf sekarang juga jalan di situs hasil build (sebelumnya hanya `pnpm dev`).
+- Admin lokal tidak berubah (tetap hanya 127.0.0.1 + token, 404 di production lokal).
+- Dokumen: `docs/ADMIN_ONLINE.md`. Tes: `tests/admin-online.test.ts`, `scripts/e2e/admin-online.e2e.mjs`.
+
 ## V5.0.0 — 2026-10-30
 
 ### Diperbaiki (bug dari audit V4)
