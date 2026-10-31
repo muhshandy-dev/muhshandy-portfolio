@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import Navbar from "@/components/navbar";
 import SiteHeader from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -12,8 +12,10 @@ import { siteUrl } from "@/lib/seo";
 import { shellWidthClass, themeStyle } from "@/lib/theme";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "500", "600", "700"], display: "swap" });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500", "600"], display: "swap" });
+// Font disajikan dari repo sendiri (Geist, lisensi OFL, lihat fonts/LICENSE-Geist-OFL.txt), bukan diunduh dari Google saat build:
+// unduhan itu kadang gagal dan membuat build Cloudflare/CI gagal ("Can't resolve ...font/google/font").
+const geist = localFont({ src: "./fonts/Geist-Variable.woff2", variable: "--font-sans", weight: "100 900", display: "swap" });
+const mono = localFont({ src: "./fonts/GeistMono-Variable.woff2", variable: "--font-mono", weight: "100 900", display: "swap" });
 
 const s = site.settings;
 const title = s.seoTitle || site.profile.name;
