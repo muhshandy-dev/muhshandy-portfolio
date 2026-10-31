@@ -1063,7 +1063,7 @@
     "defaultTheme": "light",
     "animation": "full",
     "radius": "normal",
-    "backgroundGrid": true,
+    "backgroundGrid": false,
     "showDemoBanner": false,
     "seoTitle": "",
     "seoDescription": "",
