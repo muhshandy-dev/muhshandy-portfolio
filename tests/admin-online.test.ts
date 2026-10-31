@@ -10,6 +10,7 @@ import * as logout from "../functions/api/admin/logout.ts";
 import * as site from "../functions/api/admin/site.ts";
 import * as upload from "../functions/api/admin/upload.ts";
 import * as backups from "../functions/api/admin/backups.ts";
+import * as status from "../functions/api/status.ts";
 import { normalizeSite, parseSite } from "../src/lib/site-schema.ts";
 import { startMockGithub, type MockGithub } from "./helpers/mock-github.ts";
 
@@ -70,6 +71,17 @@ describe("konfigurasi: tertutup bila belum lengkap", () => {
     const res = await api("/api/admin/login", "POST", { env: { ...env, ADMIN_PASSWORD: "pendek" }, body: JSON.stringify({ password: "pendek" }) });
     assert.equal(res.status, 503);
     assert.equal(res.headers.get("set-cookie"), null);
+  });
+});
+
+describe("/api/status (publik, tanpa rahasia)", () => {
+  const call = (e: Env) => status.onRequestGet({ request: new Request(`${ORIGIN}/api/status`), env: e, next: async () => new Response("x") });
+  test("menunjukkan Functions aktif dan hanya ya/tidak untuk kesiapan admin", async () => {
+    const ok = await (await call(env)).json();
+    assert.deepEqual(ok, { functions: true, adminSiap: true });
+    const notReady = await call({ ...env, GITHUB_TOKEN: undefined });
+    assert.deepEqual(await notReady.json(), { functions: true, adminSiap: false });
+    assert.ok(!JSON.stringify(ok).includes(PASSWORD) && !JSON.stringify(ok).includes(gh.token));
   });
 });
 

@@ -43,6 +43,8 @@ Server hanya memberi jeda 1,2 detik pada tiap kata sandi salah. Penghitung perco
 - Menutup tab atau sesi 8 jam habis: perubahan yang belum disimpan tetap di halaman; login lagi di tab baru lalu klik Simpan di tab lama.
 
 ## Bila ada masalah
+Cek cepat tanpa login: buka `/versi.json` (commit yang sedang tayang; kalau 404, yang tayang deployment lama) dan `/api/status` (`functions: true` = login aktif, `adminSiap: true` = dua rahasia sudah terisi; hanya ya/tidak, tanpa isi rahasia).
+
 | Gejala | Penyebab dan solusi |
 | --- | --- |
 | "GITHUB_TOKEN ditolak GitHub" | Token salah atau kedaluwarsa. Buat token baru (langkah A), ganti variabel, Retry deployment. |
