@@ -20,153 +20,182 @@
   "skills": [
     {
       "id": "sample-skill-1",
+      "en": {},
       "demo": true,
-      "name": "Python",
-      "en": {}
+      "hidden": false,
+      "name": "Python"
     },
     {
       "id": "sample-skill-2",
+      "en": {},
       "demo": true,
-      "name": "TypeScript",
-      "en": {}
+      "hidden": false,
+      "name": "TypeScript"
     },
     {
       "id": "sample-skill-3",
+      "en": {},
       "demo": true,
-      "name": "JavaScript",
-      "en": {}
+      "hidden": false,
+      "name": "JavaScript"
     },
     {
       "id": "sample-skill-4",
+      "en": {},
       "demo": true,
-      "name": "SQL",
-      "en": {}
+      "hidden": false,
+      "name": "SQL"
     },
     {
       "id": "sample-skill-5",
+      "en": {},
       "demo": true,
-      "name": "React",
-      "en": {}
+      "hidden": false,
+      "name": "React"
     },
     {
       "id": "sample-skill-6",
+      "en": {},
       "demo": true,
-      "name": "Next.js",
-      "en": {}
+      "hidden": false,
+      "name": "Next.js"
     },
     {
       "id": "sample-skill-7",
+      "en": {},
       "demo": true,
-      "name": "Node.js",
-      "en": {}
+      "hidden": false,
+      "name": "Node.js"
     },
     {
       "id": "sample-skill-8",
+      "en": {},
       "demo": true,
-      "name": "Git",
-      "en": {}
+      "hidden": false,
+      "name": "Git"
     },
     {
       "id": "sample-skill-9",
+      "en": {},
       "demo": true,
-      "name": "GitHub",
-      "en": {}
+      "hidden": false,
+      "name": "GitHub"
     },
     {
       "id": "sample-skill-10",
+      "en": {},
       "demo": true,
-      "name": "Pandas",
-      "en": {}
+      "hidden": false,
+      "name": "Pandas"
     },
     {
       "id": "sample-skill-11",
+      "en": {},
       "demo": true,
-      "name": "NumPy",
-      "en": {}
+      "hidden": false,
+      "name": "NumPy"
     },
     {
       "id": "sample-skill-12",
+      "en": {},
       "demo": true,
-      "name": "Scikit-learn",
-      "en": {}
+      "hidden": false,
+      "name": "Scikit-learn"
     },
     {
       "id": "sample-skill-13",
+      "en": {},
       "demo": true,
-      "name": "TensorFlow",
-      "en": {}
+      "hidden": false,
+      "name": "TensorFlow"
     },
     {
       "id": "sample-skill-14",
+      "en": {},
       "demo": true,
-      "name": "PyTorch",
-      "en": {}
+      "hidden": false,
+      "name": "PyTorch"
     },
     {
       "id": "sample-skill-15",
+      "en": {},
       "demo": true,
-      "name": "DuckDB",
-      "en": {}
+      "hidden": false,
+      "name": "DuckDB"
     },
     {
       "id": "sample-skill-16",
+      "en": {},
       "demo": true,
-      "name": "Power BI",
-      "en": {}
+      "hidden": false,
+      "name": "Power BI"
     },
     {
       "id": "sample-skill-17",
+      "en": {},
       "demo": true,
-      "name": "Matplotlib",
-      "en": {}
+      "hidden": false,
+      "name": "Matplotlib"
     },
     {
       "id": "sample-skill-18",
+      "en": {},
       "demo": true,
-      "name": "Docker",
-      "en": {}
+      "hidden": false,
+      "name": "Docker"
     },
     {
       "id": "sample-skill-19",
+      "en": {},
       "demo": true,
-      "name": "REST API",
-      "en": {}
+      "hidden": false,
+      "name": "REST API"
     },
     {
       "id": "sample-skill-20",
+      "en": {},
       "demo": true,
-      "name": "PostgreSQL",
-      "en": {}
+      "hidden": false,
+      "name": "PostgreSQL"
     },
     {
       "id": "sample-skill-21",
+      "en": {},
       "demo": true,
-      "name": "Data Cleaning",
-      "en": {}
+      "hidden": false,
+      "name": "Data Cleaning"
     },
     {
       "id": "sample-skill-22",
+      "en": {},
       "demo": true,
-      "name": "Machine Learning",
-      "en": {}
+      "hidden": false,
+      "name": "Machine Learning"
     },
     {
       "id": "sample-skill-23",
+      "en": {},
       "demo": true,
-      "name": "Statistics",
-      "en": {}
+      "hidden": false,
+      "name": "Statistics"
     },
     {
       "id": "sample-skill-24",
+      "en": {},
       "demo": true,
-      "name": "MLOps",
-      "en": {}
+      "hidden": false,
+      "name": "MLOps"
     }
   ],
   "work": [
     {
       "id": "sample-work-1",
+      "en": {
+        "company": "Sample Company A",
+        "description": "Sample: validated data quality, built a basic dashboard, and documented findings."
+      },
       "demo": true,
+      "hidden": false,
       "company": "Perusahaan Contoh A",
       "title": "Data Analyst Intern",
       "type": "Internship",
@@ -175,15 +204,16 @@
       "end": "2026",
       "description": "Contoh: membantu validasi kualitas data, menyusun dashboard sederhana, dan mendokumentasikan temuan.",
       "href": "",
-      "logoUrl": "",
-      "en": {
-        "company": "Sample Company A",
-        "description": "Sample: validated data quality, built a basic dashboard, and documented findings."
-      }
+      "logoUrl": ""
     },
     {
       "id": "sample-work-2",
+      "en": {
+        "company": "Sample Studio B",
+        "description": "Sample: built responsive interfaces and reusable components."
+      },
       "demo": true,
+      "hidden": false,
       "company": "Studio Contoh B",
       "title": "Frontend Developer",
       "type": "Freelance",
@@ -192,15 +222,17 @@
       "end": "2025",
       "description": "Contoh: membuat antarmuka responsif dan komponen yang dapat digunakan ulang.",
       "href": "",
-      "logoUrl": "",
-      "en": {
-        "company": "Sample Studio B",
-        "description": "Sample: built responsive interfaces and reusable components."
-      }
+      "logoUrl": ""
     },
     {
       "id": "sample-work-3",
+      "en": {
+        "company": "Sample Tech Community",
+        "title": "Technology Team Member",
+        "description": "Sample: coordinated discussions and shared learning materials."
+      },
       "demo": true,
+      "hidden": false,
       "company": "Komunitas Teknologi Contoh",
       "title": "Anggota Divisi Teknologi",
       "type": "Organization",
@@ -209,16 +241,17 @@
       "end": "2026",
       "description": "Contoh: menyelenggarakan diskusi teknologi dan berbagi materi belajar.",
       "href": "",
-      "logoUrl": "",
-      "en": {
-        "company": "Sample Tech Community",
-        "title": "Technology Team Member",
-        "description": "Sample: coordinated discussions and shared learning materials."
-      }
+      "logoUrl": ""
     },
     {
       "id": "sample-work-4",
+      "en": {
+        "company": "Sample Laboratory",
+        "title": "Data Research Assistant",
+        "description": "Sample: ran data experiments and prepared technical documentation."
+      },
       "demo": true,
+      "hidden": false,
       "company": "Laboratorium Contoh",
       "title": "Asisten Riset Data",
       "type": "Other",
@@ -227,51 +260,51 @@
       "end": "2025",
       "description": "Contoh: melakukan eksperimen data dan menyiapkan dokumentasi teknis.",
       "href": "",
-      "logoUrl": "",
-      "en": {
-        "company": "Sample Laboratory",
-        "title": "Data Research Assistant",
-        "description": "Sample: ran data experiments and prepared technical documentation."
-      }
+      "logoUrl": ""
     }
   ],
   "education": [
     {
       "id": "sample-edu-1",
+      "en": {
+        "school": "Sample University",
+        "degree": "Bachelor's — Computing / Data"
+      },
       "demo": true,
+      "hidden": false,
       "school": "Universitas Contoh",
       "degree": "Sarjana — Informatika / Data",
       "start": "2022",
       "end": "2026",
+      "description": "",
       "href": "",
-      "logoUrl": "",
-      "en": {
-        "school": "Sample University",
-        "degree": "Bachelor's — Computing / Data"
-      }
+      "logoUrl": ""
     },
     {
       "id": "sample-edu-2",
+      "en": {
+        "school": "Sample High School",
+        "degree": "Science Program"
+      },
       "demo": true,
+      "hidden": false,
       "school": "Sekolah Menengah Contoh",
       "degree": "Jurusan Sains",
       "start": "2019",
       "end": "2022",
+      "description": "",
       "href": "",
-      "logoUrl": "",
-      "en": {
-        "school": "Sample High School",
-        "degree": "Science Program"
-      }
+      "logoUrl": ""
     }
   ],
   "projects": [
     {
       "id": "da10",
+      "demo": true,
+      "hidden": false,
       "title": "DA10 · Data Trust & BI Observatory",
       "description": "Rencana: observatori kualitas data NYC TLC, kontrak skema, pemeriksaan data, dan dashboard statis yang dapat diaudit.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Python",
         "DuckDB",
@@ -284,15 +317,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "ai04",
+      "demo": true,
+      "hidden": false,
       "title": "AI04 · Sensor Anomaly & Early Warning Lab",
       "description": "Rencana: deteksi anomali sensor dengan fokus pada false alarm dan detection delay.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Python",
         "Time Series"
@@ -303,15 +340,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "ai01",
+      "demo": true,
+      "hidden": false,
       "title": "AI01 · Industrial Evidence Copilot",
       "description": "Rencana: copilot dokumen K3 berbahasa Indonesia dengan sitasi dan kemampuan menolak klaim tanpa bukti.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Retrieval",
         "NLP",
@@ -323,15 +364,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "ai03",
+      "demo": true,
+      "hidden": false,
       "title": "AI03 · Visual Defect Detection",
       "description": "Rencana: inspeksi cacat visual dengan pengujian threshold dan pelaporan false reject rate.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Computer Vision",
         "ONNX"
@@ -342,15 +387,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "ai06",
+      "demo": true,
+      "hidden": false,
       "title": "AI06 · Explainable Application Fraud Risk",
       "description": "Rencana: pemodelan risiko fraud pembukaan rekening, kalibrasi, dan evaluasi fairness.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "LightGBM",
         "Explainability"
@@ -361,15 +410,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "da07",
+      "demo": true,
+      "hidden": false,
       "title": "DA07 · Energy Demand Forecast",
       "description": "Rencana: ramalan kebutuhan energi day-ahead dengan baseline, interval, dan biaya keputusan.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Forecasting",
         "Python"
@@ -380,15 +433,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "ai05",
+      "demo": true,
+      "hidden": false,
       "title": "AI05 · Indonesian Feedback Intelligence",
       "description": "Rencana: analisis sentimen dan emosi bahasa Indonesia dengan evaluasi lintas domain.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "IndoBERT",
         "NLP"
@@ -399,15 +456,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "ai02",
+      "demo": true,
+      "hidden": false,
       "title": "AI02 · Document AI Extraction",
       "description": "Rencana: ekstraksi terstruktur dari struk dan invoice Indonesia dengan antrean peninjauan.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "OCR",
         "Document AI"
@@ -418,15 +479,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "da08",
+      "demo": true,
+      "hidden": false,
       "title": "DA08 · Customer Retention & Experimentation",
       "description": "Rencana: cohort retention dan eksperimen acak untuk analisis kausal yang tepat.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Statistics",
         "Experiments"
@@ -437,15 +502,19 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     },
     {
       "id": "da09",
+      "demo": true,
+      "hidden": false,
       "title": "DA09 · Geo-Industrial Spatial Leakage Lab",
       "description": "Rencana: atlas spasial yang memperlihatkan perbedaan random CV dan spatial CV.",
       "dates": "Roadmap 2026–2027",
-      "status": "planned",
       "technologies": [
         "Geospatial",
         "Data Analytics"
@@ -456,300 +525,323 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "mode": "Planned",
-      "demo": true
+      "status": "planned",
+      "role": "",
+      "details": "",
+      "featured": false,
+      "mode": "Planned"
     }
   ],
   "certifications": [
     {
       "id": "sample-cert-1",
+      "en": {
+        "title": "Python Basics",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Pengantar Python",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-01",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Python Basics",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-2",
+      "en": {
+        "title": "Data Analytics",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Analisis Data",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-02",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Data Analytics",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-3",
+      "en": {
+        "title": "SQL Fundamentals",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Fundamental SQL",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-03",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "SQL Fundamentals",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-4",
+      "en": {
+        "title": "Machine Learning Fundamentals",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Machine Learning Dasar",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-04",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Machine Learning Fundamentals",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-5",
+      "en": {
+        "title": "Data Visualization",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Visualisasi Data",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-05",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Data Visualization",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-6",
+      "en": {
+        "title": "Git & GitHub",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Git & GitHub",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-06",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Git & GitHub",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-7",
+      "en": {
+        "title": "Cloud Computing Fundamentals",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Dasar Cloud Computing",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-07",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Cloud Computing Fundamentals",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-8",
+      "en": {
+        "title": "Applied Statistics",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Statistik Terapan",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-08",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Applied Statistics",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-9",
+      "en": {
+        "title": "Data Storytelling",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Data Storytelling",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-09",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Data Storytelling",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-10",
+      "en": {
+        "title": "Web Development",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Web Development",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-10",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "Web Development",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-11",
+      "en": {
+        "title": "MLOps Fundamentals",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Dasar MLOps",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-11",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "MLOps Fundamentals",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     },
     {
       "id": "sample-cert-12",
+      "en": {
+        "title": "AI & Ethics",
+        "issuer": "Sample Provider"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Etika dan AI",
       "issuer": "Penyelenggara Contoh",
       "issued": "2026-12",
       "credentialId": "",
       "credentialUrl": "",
       "imageUrl": "",
-      "documentUrl": "",
-      "en": {
-        "title": "AI & Ethics",
-        "issuer": "Sample Provider"
-      }
+      "documentUrl": ""
     }
   ],
   "activities": [
     {
       "id": "sample-activity-1",
+      "en": {
+        "title": "Data Science Competition (Sample)",
+        "description": "Sample entry for previewing the activity layout."
+      },
       "demo": true,
+      "hidden": false,
       "title": "Kompetisi Data Science (Contoh)",
       "dates": "2026",
       "location": "Online",
       "description": "Data dummy untuk menguji kartu kegiatan. Ganti dengan acara sebenarnya.",
       "image": "",
-      "href": "",
-      "en": {
-        "title": "Data Science Competition (Sample)",
-        "description": "Sample entry for previewing the activity layout."
-      }
+      "href": ""
     },
     {
       "id": "sample-activity-2",
+      "en": {
+        "title": "Machine Learning Workshop (Sample)"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Workshop Machine Learning (Contoh)",
       "dates": "2026",
       "location": "Online",
       "description": "Data dummy untuk meninjau layout aktivitas.",
       "image": "",
-      "href": "",
-      "en": {
-        "title": "Machine Learning Workshop (Sample)"
-      }
+      "href": ""
     },
     {
       "id": "sample-activity-3",
+      "en": {
+        "title": "UI/UX Hackathon (Sample)"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Hackathon UI/UX (Contoh)",
       "dates": "2025",
       "location": "Indonesia",
       "description": "Data dummy, bukan partisipasi asli.",
       "image": "",
-      "href": "",
-      "en": {
-        "title": "UI/UX Hackathon (Sample)"
-      }
+      "href": ""
     },
     {
       "id": "sample-activity-4",
+      "en": {
+        "title": "Technology Seminar (Sample)"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Seminar Teknologi (Contoh)",
       "dates": "2025",
       "location": "Online",
       "description": "Data dummy untuk melihat carousel kegiatan.",
       "image": "",
-      "href": "",
-      "en": {
-        "title": "Technology Seminar (Sample)"
-      }
+      "href": ""
     },
     {
       "id": "sample-activity-5",
+      "en": {
+        "title": "Community Volunteering (Sample)"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Volunteer Komunitas (Contoh)",
       "dates": "2024",
       "location": "Indonesia",
       "description": "Data dummy untuk melihat kartu kegiatan.",
       "image": "",
-      "href": "",
-      "en": {
-        "title": "Community Volunteering (Sample)"
-      }
+      "href": ""
     }
   ],
   "posts": [
     {
       "id": "sample-blog-1",
+      "en": {
+        "title": "Starting a Data Project (Sample)",
+        "description": "Sample article on planning a data project."
+      },
       "demo": true,
+      "hidden": false,
       "title": "Cara Memulai Proyek Data (Contoh)",
       "slug": "contoh-memulai-proyek-data",
       "date": "2026-10-01",
       "description": "Tulisan contoh tentang perencanaan proyek data.",
       "content": "# Contoh tulisan\n\nIni adalah **konten demo**, bukan artikel final. Edit melalui admin.",
-      "status": "published",
-      "en": {
-        "title": "Starting a Data Project (Sample)",
-        "description": "Sample article on planning a data project."
-      }
+      "status": "published"
     },
     {
       "id": "sample-blog-2",
+      "en": {
+        "title": "Tracking ML Experiments (Sample)"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Mencatat Eksperimen ML (Contoh)",
       "slug": "contoh-eksperimen-ml",
       "date": "2026-09-10",
       "description": "Tulisan contoh tentang evaluasi model.",
       "content": "# Evaluasi model (Demo)\n\nDokumentasikan baseline, split, metrik, dan keterbatasan.",
-      "status": "published",
-      "en": {
-        "title": "Tracking ML Experiments (Sample)"
-      }
+      "status": "published"
     },
     {
       "id": "sample-blog-3",
+      "en": {
+        "title": "Building a Portfolio (Sample)"
+      },
       "demo": true,
+      "hidden": false,
       "title": "Membangun Portofolio (Contoh)",
       "slug": "contoh-portofolio",
       "date": "2026-08-14",
       "description": "Tulisan dummy untuk desain blog.",
       "content": "# Demo portofolio\n\nIni teks demonstrasi.",
-      "status": "published",
-      "en": {
-        "title": "Building a Portfolio (Sample)"
-      }
+      "status": "published"
     }
   ],
   "sections": [
@@ -758,16 +850,17 @@
       "title": "Profil",
       "subtitle": "",
       "visible": true,
-      "columns": 1,
       "layout": "list",
-      "mobileColumns": 1,
+      "columns": 1,
       "tabletColumns": 1,
+      "mobileColumns": 1,
       "displayMode": "grid",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Profile"
       }
@@ -777,16 +870,17 @@
       "title": "Tentang Saya",
       "subtitle": "",
       "visible": true,
-      "columns": 1,
       "layout": "list",
-      "mobileColumns": 1,
+      "columns": 1,
       "tabletColumns": 1,
+      "mobileColumns": 1,
       "displayMode": "grid",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "About Me"
       }
@@ -796,16 +890,17 @@
       "title": "Pengalaman & Magang",
       "subtitle": "Pengalaman profesional dan organisasi",
       "visible": true,
-      "columns": 2,
       "layout": "cards",
-      "mobileColumns": 1,
+      "columns": 2,
       "tabletColumns": 2,
+      "mobileColumns": 1,
       "displayMode": "carousel",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Experience & Internships",
         "subtitle": "Professional and organizational experience"
@@ -816,16 +911,17 @@
       "title": "Pendidikan",
       "subtitle": "",
       "visible": true,
-      "columns": 2,
       "layout": "cards",
-      "mobileColumns": 1,
+      "columns": 2,
       "tabletColumns": 2,
+      "mobileColumns": 1,
       "displayMode": "grid",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Education"
       }
@@ -835,16 +931,17 @@
       "title": "Keahlian",
       "subtitle": "",
       "visible": true,
-      "columns": 6,
       "layout": "cards",
-      "mobileColumns": 2,
+      "columns": 6,
       "tabletColumns": 4,
+      "mobileColumns": 2,
       "displayMode": "grid",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Skills"
       }
@@ -854,16 +951,17 @@
       "title": "Proyek",
       "subtitle": "Proyek yang sudah dikerjakan dan terbukti, bukan hanya ide.",
       "visible": true,
-      "columns": 4,
       "layout": "cards",
-      "mobileColumns": 1,
+      "columns": 4,
       "tabletColumns": 2,
+      "mobileColumns": 1,
       "displayMode": "carousel",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Projects",
         "subtitle": "Projects that have been built and verified, not just ideas."
@@ -874,16 +972,17 @@
       "title": "Sertifikasi",
       "subtitle": "Sertifikat dan bukti pembelajaran",
       "visible": true,
-      "columns": 6,
       "layout": "compact",
-      "mobileColumns": 2,
+      "columns": 6,
       "tabletColumns": 3,
+      "mobileColumns": 2,
       "displayMode": "carousel",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Certifications",
         "subtitle": "Certificates and learning evidence"
@@ -894,16 +993,17 @@
       "title": "Kegiatan",
       "subtitle": "Hackathon, komunitas, dan kegiatan lain",
       "visible": true,
-      "columns": 3,
       "layout": "cards",
-      "mobileColumns": 1,
+      "columns": 3,
       "tabletColumns": 2,
+      "mobileColumns": 1,
       "displayMode": "carousel",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Activities",
         "subtitle": "Hackathons, communities, and other activities"
@@ -914,16 +1014,17 @@
       "title": "Tulisan",
       "subtitle": "Catatan dan pembelajaran",
       "visible": false,
-      "columns": 3,
       "layout": "cards",
-      "mobileColumns": 1,
+      "columns": 3,
       "tabletColumns": 2,
+      "mobileColumns": 1,
       "displayMode": "carousel",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Writing",
         "subtitle": "Notes and learnings"
@@ -934,23 +1035,23 @@
       "title": "Kontak",
       "subtitle": "",
       "visible": true,
-      "columns": 1,
       "layout": "list",
-      "mobileColumns": 1,
+      "columns": 1,
       "tabletColumns": 1,
+      "mobileColumns": 1,
       "displayMode": "grid",
       "pagination": true,
       "autoPlay": true,
       "intervalSeconds": 6,
       "perPageDesktop": 8,
       "perPageMobile": 4,
+      "maxItems": 0,
       "en": {
         "title": "Contact"
       }
     }
   ],
   "settings": {
-    "showPlannedProjects": false,
     "contactHeading": "Mari terhubung",
     "contactText": "Tertarik berdiskusi atau berkolaborasi? Hubungi aku lewat email atau media sosial di bawah.",
     "introGreeting": "Halo, saya",
@@ -958,10 +1059,21 @@
     "faviconUrl": "",
     "contentWidth": "wide",
     "languagePosition": "top-right",
+    "defaultLanguage": "id",
+    "defaultTheme": "light",
+    "animation": "full",
+    "radius": "normal",
+    "backgroundGrid": true,
+    "showDemoBanner": false,
+    "seoTitle": "",
+    "seoDescription": "",
+    "seoKeywords": [],
+    "ogImageUrl": "",
     "en": {
       "introGreeting": "Hi, I'm",
       "contactHeading": "Let's connect",
       "contactText": "Interested in a discussion or collaboration? Reach me by email or the social links below."
-    }
+    },
+    "showPlannedProjects": false
   }
 }
