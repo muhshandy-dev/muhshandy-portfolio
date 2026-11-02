@@ -191,38 +191,38 @@
     {
       "id": "sample-work-1",
       "en": {
-        "company": "Sample Company A",
-        "description": "Sample: validated data quality, built a basic dashboard, and documented findings."
+        "company": "",
+        "description": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "company": "Perusahaan Contoh A",
-      "title": "Data Analyst Intern",
+      "company": "Universitas Mulawarman",
+      "title": "Research Assistant",
       "type": "Internship",
-      "location": "Remote",
+      "location": "Onsite",
       "start": "2026",
       "end": "2026",
-      "description": "Contoh: membantu validasi kualitas data, menyusun dashboard sederhana, dan mendokumentasikan temuan.",
+      "description": "Membantu tim penelitian dosen berpendanaan BIMA menyiapkan dataset data serta melakukan eksperimen dengan melatih dan membandingkan 4 arsitektur CNN dan Vision Transformer dengan PyTorch.",
       "href": "",
-      "logoUrl": ""
+      "logoUrl": "/uploads/logo-universitas-mulawarman-1dbde557.webp"
     },
     {
       "id": "sample-work-2",
       "en": {
-        "company": "Sample Studio B",
-        "description": "Sample: built responsive interfaces and reusable components."
+        "company": "",
+        "description": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "company": "Studio Contoh B",
-      "title": "Frontend Developer",
-      "type": "Freelance",
+      "company": "PT Vinix Seven Aurum",
+      "title": "Junior Data Science Intern",
+      "type": "Internship",
       "location": "Remote",
       "start": "2025",
       "end": "2025",
-      "description": "Contoh: membuat antarmuka responsif dan komponen yang dapat digunakan ulang.",
-      "href": "",
-      "logoUrl": ""
+      "description": "Menyelesaikan 10 modul Data Science dengan nilai rata-rata 92,1, tertinggi analisis data statistik 100, lewat tugas mingguan SQL, data cleaning, EDA, uji hipotesis, regresi, dan dashboard Tableau.",
+      "href": "https://vinix7.id/",
+      "logoUrl": "/uploads/logo-v7-468dba26.png"
     },
     {
       "id": "sample-work-3",
@@ -231,7 +231,7 @@
         "title": "Technology Team Member",
         "description": "Sample: coordinated discussions and shared learning materials."
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "company": "Komunitas Teknologi Contoh",
       "title": "Anggota Divisi Teknologi",
@@ -240,25 +240,6 @@
       "start": "2025",
       "end": "2026",
       "description": "Contoh: menyelenggarakan diskusi teknologi dan berbagi materi belajar.",
-      "href": "",
-      "logoUrl": ""
-    },
-    {
-      "id": "sample-work-4",
-      "en": {
-        "company": "Sample Laboratory",
-        "title": "Data Research Assistant",
-        "description": "Sample: ran data experiments and prepared technical documentation."
-      },
-      "demo": true,
-      "hidden": false,
-      "company": "Laboratorium Contoh",
-      "title": "Asisten Riset Data",
-      "type": "Other",
-      "location": "Indonesia",
-      "start": "2024",
-      "end": "2025",
-      "description": "Contoh: melakukan eksperimen data dan menyiapkan dokumentasi teknis.",
       "href": "",
       "logoUrl": ""
     }
