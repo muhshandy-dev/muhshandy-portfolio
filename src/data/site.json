@@ -517,18 +517,18 @@
     {
       "id": "sample-cert-1",
       "en": {
-        "title": "Python Basics",
-        "issuer": "Sample Provider"
+        "title": "",
+        "issuer": ""
       },
       "demo": false,
       "hidden": false,
-      "title": "Pengantar Python",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-01",
+      "title": "Pelatihan Deep Learning dan Computer Vision serta LLM Engineering dan RAG",
+      "issuer": "Telkomsel × Institut Teknologi Bandung",
+      "issued": "2026",
       "credentialId": "",
       "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
+      "imageUrl": "/uploads/sertifdeeplearning-072a204c.png",
+      "documentUrl": "/uploads/itb-239319c8.pdf"
     },
     {
       "id": "sample-cert-2",
