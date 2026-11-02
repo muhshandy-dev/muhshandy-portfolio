@@ -4,7 +4,10 @@ import Article from "@/components/blog/article";
 import { publishedPosts, site } from "@/lib/site";
 
 export const dynamicParams = false;
-export function generateStaticParams() { return publishedPosts(site).map((p) => ({ slug: p.slug })); }
+export function generateStaticParams() {
+  return [{ slug: 'test' }];
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = publishedPosts(site).find((p) => p.slug === slug);
