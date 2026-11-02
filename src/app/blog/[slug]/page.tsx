@@ -3,26 +3,6 @@ import type { Metadata } from "next";
 import Article from "@/components/blog/article";
 import { publishedPosts, site } from "@/lib/site";
 
-
-// app/blog/[slug]/page.tsx
-
-import fs from 'fs';
-import path from 'path';
-
-// Tambahkan ini:
-export async function generateStaticParams() {
-  const postsDirectory = path.join(process.cwd(), 'content/blog');
-  const files = fs.readdirSync(postsDirectory);
-  return files
-    .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
-    .map((file) => ({
-      slug: file.replace(/\.mdx?$/, ''),
-    }));
-}
-
-// ... sisa komponen Page Anda tetap sama
-
-
 export const dynamicParams = false;
 export function generateStaticParams() { return publishedPosts(site).map((p) => ({ slug: p.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
