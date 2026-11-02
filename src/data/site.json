@@ -726,16 +726,16 @@
     {
       "id": "sample-activity-2",
       "en": {
-        "title": "Machine Learning Workshop (Sample)"
+        "title": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "title": "Workshop Machine Learning (Contoh)",
-      "dates": "2026",
-      "location": "Online",
-      "description": "Data dummy untuk meninjau layout aktivitas.",
-      "image": "",
-      "href": ""
+      "title": "Technology Goes to Village 2025",
+      "dates": "2025",
+      "location": "Offline",
+      "description": "Koordinator Humas dan Pendanaan, meraih sponsor Pertamina Hulu Mahakam.",
+      "image": "/uploads/tgtv-10c6adac.png",
+      "href": "https://drive.google.com/file/d/14y_lfHgJVZLZORb838lSv_wLyK-OQ6ZG/view?usp=sharing"
     },
     {
       "id": "sample-activity-3",
