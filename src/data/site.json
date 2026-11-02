@@ -740,15 +740,15 @@
     {
       "id": "sample-activity-3",
       "en": {
-        "title": "UI/UX Hackathon (Sample)"
+        "title": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "title": "Hackathon UI/UX (Contoh)",
-      "dates": "2025",
-      "location": "Indonesia",
-      "description": "Data dummy, bukan partisipasi asli.",
-      "image": "",
+      "title": "Mulawarman Informatics Tech 2024",
+      "dates": "2024",
+      "location": "Samarinda, Indonesia",
+      "description": " Koordinator Humas kegiatan teknologi dan informatika.",
+      "image": "/uploads/mitw-a6ac833e.png",
       "href": ""
     },
     {
