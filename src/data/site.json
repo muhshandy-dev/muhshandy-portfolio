@@ -283,18 +283,18 @@
     {
       "id": "sample-edu-2",
       "en": {
-        "school": "Sample High School",
-        "degree": "Science Program"
+        "school": "",
+        "degree": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "school": "Sekolah Menengah Contoh",
-      "degree": "Jurusan Sains",
-      "start": "2019",
-      "end": "2022",
+      "school": "SMA Taruna Nusantara",
+      "degree": "Jurusan Matematika dan IPA",
+      "start": "2020",
+      "end": "2023",
       "description": "",
-      "href": "",
-      "logoUrl": ""
+      "href": "https://www.tarunanusantara.sch.id/",
+      "logoUrl": "/uploads/smatn-9af628d2.png"
     }
   ],
   "projects": [
