@@ -227,21 +227,21 @@
     {
       "id": "sample-work-3",
       "en": {
-        "company": "Sample Tech Community",
-        "title": "Technology Team Member",
-        "description": "Sample: coordinated discussions and shared learning materials."
+        "company": "",
+        "title": "",
+        "description": ""
       },
       "demo": false,
       "hidden": false,
-      "company": "Komunitas Teknologi Contoh",
-      "title": "Anggota Divisi Teknologi",
+      "company": "Laboratorium Komputasi dan Pemrograman Komputer, Universitas Mulawarman",
+      "title": "Asisten Praktikum Algoritma dan Pemrograman",
       "type": "Organization",
       "location": "Indonesia",
-      "start": "2025",
-      "end": "2026",
-      "description": "Contoh: menyelenggarakan diskusi teknologi dan berbagi materi belajar.",
+      "start": "2024",
+      "end": "2025",
+      "description": "Mendampingi praktikum Algoritma dan Pemrograman Dasar dan Lanjut 2025/2026 untuk 2 kelas berisi sekitar 90 mahasiswa dengan C++ dan Python, membantu debugging, serta menilai laporan praktikum.",
       "href": "",
-      "logoUrl": ""
+      "logoUrl": "/uploads/logo-universitas-mulawarman-0f9ffcf0.webp"
     }
   ],
   "education": [
