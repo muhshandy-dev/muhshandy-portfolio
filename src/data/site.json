@@ -301,7 +301,7 @@
       "status": "completed",
       "role": "",
       "details": "",
-      "featured": true,
+      "featured": false,
       "mode": "Planned"
     },
     {
