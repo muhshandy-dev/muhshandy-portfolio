@@ -281,20 +281,43 @@
   "projects": [
     {
       "id": "da10",
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "title": "DA10 · Data Trust & BI Observatory",
-      "description": "Rencana: observatori kualitas data NYC TLC, kontrak skema, pemeriksaan data, dan dashboard statis yang dapat diaudit.",
-      "dates": "Roadmap 2026–2027",
+      "title": "Data Trust & BI Observatory",
+      "description": "Observatori kualitas data NYC TLC, kontrak skema, pemeriksaan data, dan dashboard statis yang dapat diaudit.",
+      "dates": "2026",
       "technologies": [
         "Python",
         "DuckDB",
         "dbt",
         "Pandera"
       ],
-      "href": "",
-      "repoUrl": "",
+      "href": "https://data-trust-bi-observatory.pages.dev/",
+      "repoUrl": "https://github.com/muhshandy-dev/data-trust-bi-observatory",
       "image": "/demo-cover/da10.svg",
+      "video": "",
+      "evaluationUrl": "",
+      "limitations": "",
+      "status": "completed",
+      "role": "",
+      "details": "",
+      "featured": true,
+      "mode": "Planned"
+    },
+    {
+      "id": "ai04",
+      "demo": false,
+      "hidden": false,
+      "title": "Sensor Anomaly & Early Warning Lab",
+      "description": "deteksi anomali sensor dengan fokus pada false alarm dan detection delay.",
+      "dates": "2026",
+      "technologies": [
+        "Python",
+        "Time Series"
+      ],
+      "href": "https://industrial-sensor-sentinel.pages.dev/",
+      "repoUrl": "https://github.com/muhshandy-dev/industrial-sensor-sentinel",
+      "image": "/demo-cover/ai04.svg",
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
@@ -305,31 +328,8 @@
       "mode": "Planned"
     },
     {
-      "id": "ai04",
-      "demo": true,
-      "hidden": false,
-      "title": "AI04 · Sensor Anomaly & Early Warning Lab",
-      "description": "Rencana: deteksi anomali sensor dengan fokus pada false alarm dan detection delay.",
-      "dates": "Roadmap 2026–2027",
-      "technologies": [
-        "Python",
-        "Time Series"
-      ],
-      "href": "",
-      "repoUrl": "",
-      "image": "/demo-cover/ai04.svg",
-      "video": "",
-      "evaluationUrl": "",
-      "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "status": "planned",
-      "role": "",
-      "details": "",
-      "featured": false,
-      "mode": "Planned"
-    },
-    {
       "id": "ai01",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "AI01 · Industrial Evidence Copilot",
       "description": "Rencana: copilot dokumen K3 berbahasa Indonesia dengan sitasi dan kemampuan menolak klaim tanpa bukti.",
@@ -353,7 +353,7 @@
     },
     {
       "id": "ai03",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "AI03 · Visual Defect Detection",
       "description": "Rencana: inspeksi cacat visual dengan pengujian threshold dan pelaporan false reject rate.",
@@ -376,7 +376,7 @@
     },
     {
       "id": "ai06",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "AI06 · Explainable Application Fraud Risk",
       "description": "Rencana: pemodelan risiko fraud pembukaan rekening, kalibrasi, dan evaluasi fairness.",
@@ -399,7 +399,7 @@
     },
     {
       "id": "da07",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "DA07 · Energy Demand Forecast",
       "description": "Rencana: ramalan kebutuhan energi day-ahead dengan baseline, interval, dan biaya keputusan.",
@@ -422,7 +422,7 @@
     },
     {
       "id": "ai05",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "AI05 · Indonesian Feedback Intelligence",
       "description": "Rencana: analisis sentimen dan emosi bahasa Indonesia dengan evaluasi lintas domain.",
@@ -445,7 +445,7 @@
     },
     {
       "id": "ai02",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "AI02 · Document AI Extraction",
       "description": "Rencana: ekstraksi terstruktur dari struk dan invoice Indonesia dengan antrean peninjauan.",
@@ -468,7 +468,7 @@
     },
     {
       "id": "da08",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "DA08 · Customer Retention & Experimentation",
       "description": "Rencana: cohort retention dan eksperimen acak untuk analisis kausal yang tepat.",
@@ -491,7 +491,7 @@
     },
     {
       "id": "da09",
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "DA09 · Geo-Industrial Spatial Leakage Lab",
       "description": "Rencana: atlas spasial yang memperlihatkan perbedaan random CV dan spatial CV.",
@@ -780,51 +780,7 @@
       "href": ""
     }
   ],
-  "posts": [
-    {
-      "id": "sample-blog-1",
-      "en": {
-        "title": "Starting a Data Project (Sample)",
-        "description": "Sample article on planning a data project."
-      },
-      "demo": true,
-      "hidden": false,
-      "title": "Cara Memulai Proyek Data (Contoh)",
-      "slug": "contoh-memulai-proyek-data",
-      "date": "2026-10-01",
-      "description": "Tulisan contoh tentang perencanaan proyek data.",
-      "content": "# Contoh tulisan\n\nIni adalah **konten demo**, bukan artikel final. Edit melalui admin.",
-      "status": "published"
-    },
-    {
-      "id": "sample-blog-2",
-      "en": {
-        "title": "Tracking ML Experiments (Sample)"
-      },
-      "demo": true,
-      "hidden": false,
-      "title": "Mencatat Eksperimen ML (Contoh)",
-      "slug": "contoh-eksperimen-ml",
-      "date": "2026-09-10",
-      "description": "Tulisan contoh tentang evaluasi model.",
-      "content": "# Evaluasi model (Demo)\n\nDokumentasikan baseline, split, metrik, dan keterbatasan.",
-      "status": "published"
-    },
-    {
-      "id": "sample-blog-3",
-      "en": {
-        "title": "Building a Portfolio (Sample)"
-      },
-      "demo": true,
-      "hidden": false,
-      "title": "Membangun Portofolio (Contoh)",
-      "slug": "contoh-portofolio",
-      "date": "2026-08-14",
-      "description": "Tulisan dummy untuk desain blog.",
-      "content": "# Demo portofolio\n\nIni teks demonstrasi.",
-      "status": "published"
-    }
-  ],
+  "posts": [],
   "sections": [
     {
       "id": "hero",
