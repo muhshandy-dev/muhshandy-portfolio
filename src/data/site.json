@@ -534,17 +534,17 @@
       "id": "sample-cert-2",
       "en": {
         "title": "Data Analytics",
-        "issuer": "Sample Provider"
+        "issuer": ""
       },
       "demo": false,
       "hidden": false,
-      "title": "Analisis Data",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-02",
+      "title": "Pelatihan Data Analyst",
+      "issuer": "Simplilearn",
+      "issued": "2026",
       "credentialId": "",
       "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
+      "imageUrl": "/uploads/simplilearn-7dd9178e.png",
+      "documentUrl": "/uploads/simplelearndataanalyst-92f195e6.pdf"
     },
     {
       "id": "sample-cert-3",
