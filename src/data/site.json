@@ -520,7 +520,7 @@
         "title": "Python Basics",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Pengantar Python",
       "issuer": "Penyelenggara Contoh",
@@ -536,7 +536,7 @@
         "title": "Data Analytics",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Analisis Data",
       "issuer": "Penyelenggara Contoh",
@@ -552,7 +552,7 @@
         "title": "SQL Fundamentals",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Fundamental SQL",
       "issuer": "Penyelenggara Contoh",
@@ -568,7 +568,7 @@
         "title": "Machine Learning Fundamentals",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Machine Learning Dasar",
       "issuer": "Penyelenggara Contoh",
@@ -584,7 +584,7 @@
         "title": "Data Visualization",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Visualisasi Data",
       "issuer": "Penyelenggara Contoh",
@@ -600,7 +600,7 @@
         "title": "Git & GitHub",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Git & GitHub",
       "issuer": "Penyelenggara Contoh",
@@ -616,7 +616,7 @@
         "title": "Cloud Computing Fundamentals",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Dasar Cloud Computing",
       "issuer": "Penyelenggara Contoh",
@@ -632,7 +632,7 @@
         "title": "Applied Statistics",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Statistik Terapan",
       "issuer": "Penyelenggara Contoh",
@@ -648,7 +648,7 @@
         "title": "Data Storytelling",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Data Storytelling",
       "issuer": "Penyelenggara Contoh",
@@ -664,7 +664,7 @@
         "title": "Web Development",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Web Development",
       "issuer": "Penyelenggara Contoh",
@@ -680,7 +680,7 @@
         "title": "MLOps Fundamentals",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Dasar MLOps",
       "issuer": "Penyelenggara Contoh",
@@ -696,7 +696,7 @@
         "title": "AI & Ethics",
         "issuer": "Sample Provider"
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Etika dan AI",
       "issuer": "Penyelenggara Contoh",
