@@ -1,19 +1,19 @@
 {
   "profile": {
-    "name": "Muhammad Shandy Alfarizal",
-    "headline": "Aspiring Applied AI / ML Engineer · Data Analytics",
-    "description": "Membangun solusi AI dan data yang bisa diuji, dijelaskan, dan digunakan.",
-    "summary": "Selamat datang di portofolioku. Di sini aku mendokumentasikan pengalaman, kompetensi, serta proyek AI/Data dari perencanaan hingga hasil yang bisa direproduksi. Semua status proyek ditampilkan secara transparan.",
+    "name": "Muhammad Shandy Alfarizal, S.Kom",
+    "headline": "Pengembang Aplikasi dan AI",
+    "description": "Membangun Aplikasi dan AI serta data yang bisa diuji, dijelaskan, dan digunakan.",
+    "summary": "Lulusan S1 Informatika Universitas Mulawarman, S.Kom., IPK 3,82, siap berkontribusi sebagai pengembang aplikasi dan AI maupun analis data. Terbiasa menangani analisis kebutuhan, aplikasi web dengan API dan basis data, pengolahan dan evaluasi data, hingga pengujian dan dokumentasi. Alumni ASAH Dicoding, pelatihan Telkomsel × ITB, magang Junior Data Science dengan nilai rata-rata 92,1, dan presenter riset deep learning di ICIC 2026. Berdomisili di Kalimantan Timur dan siap ditempatkan di Kabupaten Paser maupun Penajam Paser Utara.",
     "location": "Indonesia",
     "locationUrl": "",
     "avatarUrl": "",
     "cvUrl": "",
-    "email": "nama@example.com",
-    "phone": "",
+    "email": "shanzzz2027@gmail.com",
+    "phone": "+6285696260246",
     "siteUrl": "http://localhost:3000",
     "en": {
-      "description": "Building AI and data solutions that can be tested, explained, and used.",
-      "summary": "Welcome to my portfolio. Here I document my experience, skills, and AI/Data projects, from planning to reproducible results. Every project status is shown transparently."
+      "description": "",
+      "summary": ""
     }
   },
   "socialLinks": [],
@@ -267,18 +267,18 @@
     {
       "id": "sample-edu-1",
       "en": {
-        "school": "Sample University",
-        "degree": "Bachelor's — Computing / Data"
+        "school": "",
+        "degree": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "school": "Universitas Contoh",
-      "degree": "Sarjana — Informatika / Data",
-      "start": "2022",
+      "school": "Universitas Mulawarman",
+      "degree": "Sarjana Informatika",
+      "start": "2023",
       "end": "2026",
-      "description": "",
-      "href": "",
-      "logoUrl": ""
+      "description": "Kota: Samarinda          Fakultas: Teknik     Gelar: S.Kom.     IPK: 3,82 / 4,00     Level KKNI: 6     \nSkripsi: Benchmarking MobileNetV3 And EfficientNet-B0 For Corn Leaf Disease Classification With Imbalanced Dataset Using Stratified Cross-Validation",
+      "href": "https://unmul.ac.id/",
+      "logoUrl": "/uploads/logo-universitas-mulawarman-af408eb4.webp"
     },
     {
       "id": "sample-edu-2",
@@ -317,7 +317,7 @@
       "video": "",
       "evaluationUrl": "",
       "limitations": "Belum diimplementasikan atau dievaluasi.",
-      "status": "planned",
+      "status": "completed",
       "role": "",
       "details": "",
       "featured": false,
