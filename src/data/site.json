@@ -549,162 +549,18 @@
     {
       "id": "sample-cert-3",
       "en": {
-        "title": "SQL Fundamentals",
-        "issuer": "Sample Provider"
+        "title": "",
+        "issuer": ""
       },
       "demo": false,
       "hidden": false,
-      "title": "Fundamental SQL",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-03",
+      "title": "Sertifikat Front End Back End With AI ( TOTAl 11 Sertifikasi )",
+      "issuer": "Dicoding Indonesia",
+      "issued": "2026",
       "credentialId": "",
       "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-4",
-      "en": {
-        "title": "Machine Learning Fundamentals",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Machine Learning Dasar",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-04",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-5",
-      "en": {
-        "title": "Data Visualization",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Visualisasi Data",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-05",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-6",
-      "en": {
-        "title": "Git & GitHub",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Git & GitHub",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-06",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-7",
-      "en": {
-        "title": "Cloud Computing Fundamentals",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Dasar Cloud Computing",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-07",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-8",
-      "en": {
-        "title": "Applied Statistics",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Statistik Terapan",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-08",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-9",
-      "en": {
-        "title": "Data Storytelling",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Data Storytelling",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-09",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-10",
-      "en": {
-        "title": "Web Development",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Web Development",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-10",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-11",
-      "en": {
-        "title": "MLOps Fundamentals",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Dasar MLOps",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-11",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
-    },
-    {
-      "id": "sample-cert-12",
-      "en": {
-        "title": "AI & Ethics",
-        "issuer": "Sample Provider"
-      },
-      "demo": false,
-      "hidden": false,
-      "title": "Etika dan AI",
-      "issuer": "Penyelenggara Contoh",
-      "issued": "2026-12",
-      "credentialId": "",
-      "credentialUrl": "",
-      "imageUrl": "",
-      "documentUrl": ""
+      "imageUrl": "/uploads/contohgambarasah-8d7de688.png",
+      "documentUrl": "/uploads/sertifai-merged-compressed-edd76cdd.pdf"
     }
   ],
   "activities": [
