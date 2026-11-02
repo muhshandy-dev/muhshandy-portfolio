@@ -895,7 +895,7 @@
       "displayMode": "carousel",
       "pagination": true,
       "autoPlay": true,
-      "intervalSeconds": 6,
+      "intervalSeconds": 3,
       "perPageDesktop": 8,
       "perPageMobile": 4,
       "maxItems": 0,
