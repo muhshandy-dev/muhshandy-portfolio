@@ -754,29 +754,29 @@
     {
       "id": "sample-activity-4",
       "en": {
-        "title": "Technology Seminar (Sample)"
+        "title": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "title": "Seminar Teknologi (Contoh)",
-      "dates": "2025",
-      "location": "Online",
-      "description": "Data dummy untuk melihat carousel kegiatan.",
-      "image": "",
+      "title": "Association of Informatics",
+      "dates": "2024 - 2025",
+      "location": "Samarinda",
+      "description": "Ketua Panitia Raker dan Wakil Kepala Humas 2024, Wakil Kepala Sosial dan Humas 2025.",
+      "image": "/uploads/ai-4e309132.png",
       "href": ""
     },
     {
       "id": "sample-activity-5",
       "en": {
-        "title": "Community Volunteering (Sample)"
+        "title": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "title": "Volunteer Komunitas (Contoh)",
       "dates": "2024",
       "location": "Indonesia",
-      "description": "Data dummy untuk melihat kartu kegiatan.",
-      "image": "",
+      "description": "Memimpin belajar robotika, mikrokontroler, dan IoT.",
+      "image": "/uploads/robotik-c569dfa4.png",
       "href": ""
     }
   ],
