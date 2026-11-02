@@ -19,7 +19,7 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  pageExtensions: isStatic ? ["online.tsx", ...base] : ["admin.tsx", "admin.ts", ...base],
+  pageExtensions: isStatic ? ["tsx", "ts", "jsx", "js", "online.tsx"] : ["admin.tsx", "admin.ts", ...base],
   ...(isStatic
     ? { output: "export", trailingSlash: true, images: { unoptimized: true } }
     : { async headers() { return [{ source: "/:path*", headers: securityHeaders }]; } }),
