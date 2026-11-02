@@ -21,49 +21,49 @@
     {
       "id": "sample-skill-1",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Python"
     },
     {
       "id": "sample-skill-2",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "TypeScript"
     },
     {
       "id": "sample-skill-3",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "JavaScript"
     },
     {
       "id": "sample-skill-4",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "SQL"
     },
     {
       "id": "sample-skill-5",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "React"
     },
     {
       "id": "sample-skill-6",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Next.js"
     },
     {
       "id": "sample-skill-7",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Node.js"
     },
@@ -77,112 +77,112 @@
     {
       "id": "sample-skill-9",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "GitHub"
     },
     {
       "id": "sample-skill-10",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Pandas"
     },
     {
       "id": "sample-skill-11",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "NumPy"
     },
     {
       "id": "sample-skill-12",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Scikit-learn"
     },
     {
       "id": "sample-skill-13",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "TensorFlow"
     },
     {
       "id": "sample-skill-14",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "PyTorch"
     },
     {
       "id": "sample-skill-15",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "DuckDB"
     },
     {
       "id": "sample-skill-16",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Power BI"
     },
     {
       "id": "sample-skill-17",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Matplotlib"
     },
     {
       "id": "sample-skill-18",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Docker"
     },
     {
       "id": "sample-skill-19",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "REST API"
     },
     {
       "id": "sample-skill-20",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "PostgreSQL"
     },
     {
       "id": "sample-skill-21",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Data Cleaning"
     },
     {
       "id": "sample-skill-22",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Machine Learning"
     },
     {
       "id": "sample-skill-23",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Statistics"
     },
     {
       "id": "sample-skill-24",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "MLOps"
     }
@@ -711,17 +711,17 @@
     {
       "id": "sample-activity-1",
       "en": {
-        "title": "Data Science Competition (Sample)",
-        "description": "Sample entry for previewing the activity layout."
+        "title": "",
+        "description": ""
       },
-      "demo": true,
+      "demo": false,
       "hidden": false,
-      "title": "Kompetisi Data Science (Contoh)",
+      "title": "Juara II Mulawarman Hackathon 2026 ( TechnoFest IT v3.26 UMKT ) ",
       "dates": "2026",
-      "location": "Online",
-      "description": "Data dummy untuk menguji kartu kegiatan. Ganti dengan acara sebenarnya.",
-      "image": "",
-      "href": ""
+      "location": "Offline, UMKT Samarinda",
+      "description": "Membangun prototipe aplikasi berbasis AI dalam 24 jam bersama tim beranggotakan 4 orang.",
+      "image": "/uploads/whatsapp-image-2026-11-02-at-01-47-06-909d1851.jpg",
+      "href": "https://drive.google.com/file/d/1AHz3dg4jjPt34PZHMoeNNoe01tfKIbwG/view?usp=sharing"
     },
     {
       "id": "sample-activity-2",
