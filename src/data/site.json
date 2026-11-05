@@ -284,7 +284,7 @@
       "demo": false,
       "hidden": false,
       "title": "Data Trust & BI Observatory",
-      "description": "Observatori kualitas data NYC TLC, kontrak skema, pemeriksaan data, dan dashboard statis yang dapat diaudit.",
+      "description": "Observatori kualitas data NYC TLC, kontrak skema, pemeriksaan data, dan dashboard statis yang dapat diaudit. Relevan untuk Analisis Data Ilmiah",
       "dates": "2026",
       "technologies": [
         "Python",
