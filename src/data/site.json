@@ -378,7 +378,7 @@
       "id": "ai06",
       "demo": false,
       "hidden": false,
-      "title": "Explainable Application Fraud Risk",
+      "title": "Explainable Application Fraud Risk ",
       "description": "Pemodelan risiko fraud pembukaan rekening, kalibrasi, dan evaluasi fairness.",
       "dates": "2026",
       "technologies": [
