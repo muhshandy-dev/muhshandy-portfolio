@@ -401,7 +401,7 @@
       "id": "da07",
       "demo": false,
       "hidden": false,
-      "title": "Energy Demand Forecast",
+      "title": "Energy Demand Forecast ( Relevan untuk Analisis Data Ilmiah )",
       "description": "Ramalan kebutuhan energi day-ahead dengan baseline, interval, dan biaya keputusan.",
       "dates": "2026",
       "technologies": [
