@@ -70,7 +70,7 @@
     {
       "id": "sample-skill-8",
       "en": {},
-      "demo": true,
+      "demo": false,
       "hidden": false,
       "name": "Git"
     },
